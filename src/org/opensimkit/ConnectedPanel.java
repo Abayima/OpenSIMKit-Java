@@ -29,97 +29,76 @@ public class ConnectedPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanelConnectedTop = new javax.swing.JPanel();
-        jLabelNowEditing = new javax.swing.JLabel();
         jLabelLiveEditing = new javax.swing.JLabel();
         jPanelConnectedBottom = new javax.swing.JPanel();
         jPanelLiveEdit = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanelLiveEditHelp = new javax.swing.JPanel();
         jLabelAutoSave = new javax.swing.JLabel();
-        jLabelAutoSaveSaving = new javax.swing.JLabel();
-        jLabelSaveIcon = new javax.swing.JLabel();
-        jPanelContentHelp = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jButtonSave = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabelAutoSave1 = new javax.swing.JLabel();
+        jButtonEject = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelConnectedTop.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelNowEditing.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/LiveSIMEditing.png"))); // NOI18N
-
-        jLabelLiveEditing.setFont(new java.awt.Font("Lucida Grande", 1, 34)); // NOI18N
-        jLabelLiveEditing.setText("You are live editing this SIM");
+        jLabelLiveEditing.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
+        jLabelLiveEditing.setText("You are currently editing a SIM card");
 
         org.jdesktop.layout.GroupLayout jPanelConnectedTopLayout = new org.jdesktop.layout.GroupLayout(jPanelConnectedTop);
         jPanelConnectedTop.setLayout(jPanelConnectedTopLayout);
         jPanelConnectedTopLayout.setHorizontalGroup(
             jPanelConnectedTopLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelConnectedTopLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabelNowEditing, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(27, 27, 27)
                 .add(jLabelLiveEditing)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelConnectedTopLayout.setVerticalGroup(
             jPanelConnectedTopLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanelConnectedTopLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanelConnectedTopLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabelNowEditing, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                    .add(jPanelConnectedTopLayout.createSequentialGroup()
-                        .add(15, 15, 15)
-                        .add(jLabelLiveEditing)
-                        .add(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelConnectedTopLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .add(jLabelLiveEditing)
+                .add(26, 26, 26))
         );
 
         jPanelConnectedBottom.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelLiveEdit.setBackground(new java.awt.Color(255, 255, 255));
 
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         org.jdesktop.layout.GroupLayout jPanelLiveEditLayout = new org.jdesktop.layout.GroupLayout(jPanelLiveEdit);
         jPanelLiveEdit.setLayout(jPanelLiveEditLayout);
         jPanelLiveEditLayout.setHorizontalGroup(
             jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 277, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditLayout.createSequentialGroup()
+                .add(0, 265, Short.MAX_VALUE)
+                .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         jPanelLiveEditLayout.setVerticalGroup(
             jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 302, Short.MAX_VALUE)
+            .add(jPanelLiveEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jSeparator2)
+                .addContainerGap())
         );
 
         jPanelLiveEditHelp.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelAutoSave.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabelAutoSave.setText("<html><div style=\"width:100%\">Changes are automatically saved as you type</div></html>");
+        jLabelAutoSave.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabelAutoSave.setText("<html> <div style=\"width:100%\"> <p>Edit the text in any of the boxes in the list on the left</p> <br/> <p>When you have finished editing click on the save button below to store those messages on card.</p> </div> </html>");
 
-        jLabelAutoSaveSaving.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabelAutoSaveSaving.setText("Saving now");
+        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/SaveButton.png"))); // NOI18N
+        jButtonSave.setBorder(null);
 
-        jLabelSaveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/NowSaving.png"))); // NOI18N
+        jLabelAutoSave1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabelAutoSave1.setText("<html> <div style=\"width:100%\"> <p>Edit the text in any of the boxes in the list on the left</p> <br/> <p>When you have finished editing click on the save button below to store those messages on card.</p> </div> </html>");
 
-        jPanelContentHelp.setBackground(new java.awt.Color(0, 65, 108));
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html><div style=\"width:100%\">For help and support from the SIMKit Community...</div></html>");
-
-        org.jdesktop.layout.GroupLayout jPanelContentHelpLayout = new org.jdesktop.layout.GroupLayout(jPanelContentHelp);
-        jPanelContentHelp.setLayout(jPanelContentHelpLayout);
-        jPanelContentHelpLayout.setHorizontalGroup(
-            jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelContentHelpLayout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 311, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(29, 29, 29))
-        );
-        jPanelContentHelpLayout.setVerticalGroup(
-            jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanelContentHelpLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jButtonEject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/EjectButton.png"))); // NOI18N
+        jButtonEject.setBorder(null);
 
         org.jdesktop.layout.GroupLayout jPanelLiveEditHelpLayout = new org.jdesktop.layout.GroupLayout(jPanelLiveEditHelp);
         jPanelLiveEditHelp.setLayout(jPanelLiveEditHelpLayout);
@@ -128,33 +107,37 @@ public class ConnectedPanel extends javax.swing.JPanel {
             .add(jPanelLiveEditHelpLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanelLiveEditHelpLayout.createSequentialGroup()
-                        .add(jLabelAutoSaveSaving)
-                        .add(18, 18, 18)
-                        .add(jLabelSaveIcon)))
-                .addContainerGap(13, Short.MAX_VALUE))
-            .add(jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanelLiveEditHelpLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .add(jPanelContentHelp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 326, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(12, Short.MAX_VALUE)))
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 320, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditHelpLayout.createSequentialGroup()
+                                .add(jButtonSave)
+                                .addContainerGap())))
+                    .add(jPanelLiveEditHelpLayout.createSequentialGroup()
+                        .add(jSeparator1)
+                        .addContainerGap())
+                    .add(jPanelLiveEditHelpLayout.createSequentialGroup()
+                        .add(jLabelAutoSave1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 320, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(0, 0, Short.MAX_VALUE))))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditHelpLayout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jButtonEject)
+                .addContainerGap())
         );
         jPanelLiveEditHelpLayout.setVerticalGroup(
             jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelLiveEditHelpLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jLabelSaveIcon, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jLabelAutoSaveSaving, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(236, Short.MAX_VALUE))
-            .add(jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditHelpLayout.createSequentialGroup()
-                    .addContainerGap(91, Short.MAX_VALUE)
-                    .add(jPanelContentHelp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .add(jButtonSave)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabelAutoSave1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jButtonEject))
         );
 
         org.jdesktop.layout.GroupLayout jPanelConnectedBottomLayout = new org.jdesktop.layout.GroupLayout(jPanelConnectedBottom);
@@ -174,8 +157,7 @@ public class ConnectedPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(jPanelConnectedBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanelLiveEdit, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanelLiveEditHelp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .add(jPanelLiveEditHelp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -195,22 +177,21 @@ public class ConnectedPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(jPanelConnectedTop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanelConnectedBottom, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .add(jPanelConnectedBottom, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonEject;
+    private javax.swing.JButton jButtonSave;
     private javax.swing.JLabel jLabelAutoSave;
-    private javax.swing.JLabel jLabelAutoSaveSaving;
+    private javax.swing.JLabel jLabelAutoSave1;
     private javax.swing.JLabel jLabelLiveEditing;
-    private javax.swing.JLabel jLabelNowEditing;
-    private javax.swing.JLabel jLabelSaveIcon;
     private javax.swing.JPanel jPanelConnectedBottom;
     private javax.swing.JPanel jPanelConnectedTop;
-    private javax.swing.JPanel jPanelContentHelp;
     private javax.swing.JPanel jPanelLiveEdit;
     private javax.swing.JPanel jPanelLiveEditHelp;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

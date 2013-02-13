@@ -28,42 +28,71 @@ public class DisconnectedPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jPanelBottomRightHeading = new javax.swing.JPanel();
-        jLabelConnectionStatus = new javax.swing.JLabel();
         jLabelConnectionStatusText = new javax.swing.JLabel();
+        jLabelConnectInfo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabelCouldNotDetect = new javax.swing.JLabel();
+        jLabelPossibleConnectionErrors = new javax.swing.JLabel();
         jPanelBottomRightContent = new javax.swing.JPanel();
         jPanelContentInfo = new javax.swing.JPanel();
-        jLabelConnectivityIssueText = new javax.swing.JLabel();
+        jLabelCouldNotFindIcom = new javax.swing.JLabel();
         jPanelContentHelp = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+
+        jLabel2.setText("jLabel2");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelBottomRightHeading.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelConnectionStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/NoSIMCard.png"))); // NOI18N
+        jLabelConnectionStatusText.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabelConnectionStatusText.setText("There is no SIM card connected that SIMKit can work with");
 
-        jLabelConnectionStatusText.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        jLabelConnectionStatusText.setText("No SIM Card Connected");
+        jLabelConnectInfo.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabelConnectInfo.setText("<html><div style=\"width:100%\"><p>If you want to rescan your system for SIM card, click the button here</p></div></html>");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/CheckAgainButton.png"))); // NOI18N
+        jButton1.setBorder(null);
+
+        jLabelCouldNotDetect.setText("SIMKit could not detect any connected cards that can be used at the moment");
+
+        jLabelPossibleConnectionErrors.setText("<html><div style=\"width:100%\"><p>Have a loomk at the possible connection errors below. If they dont help you solve the problem, look at the help links on the right.</p></div></html>");
 
         org.jdesktop.layout.GroupLayout jPanelBottomRightHeadingLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRightHeading);
         jPanelBottomRightHeading.setLayout(jPanelBottomRightHeadingLayout);
         jPanelBottomRightHeadingLayout.setHorizontalGroup(
             jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jLabelConnectionStatusText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(jPanelBottomRightHeadingLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabelConnectionStatus)
-                .add(18, 18, 18)
-                .add(jLabelConnectionStatusText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanelBottomRightHeadingLayout.createSequentialGroup()
+                        .add(84, 84, 84)
+                        .add(jLabelConnectInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 250, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton1)
+                        .add(0, 0, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelBottomRightHeadingLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabelPossibleConnectionErrors, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .add(jPanelBottomRightHeadingLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabelCouldNotDetect, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelBottomRightHeadingLayout.setVerticalGroup(
             jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelBottomRightHeadingLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabelConnectionStatus, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jLabelConnectionStatusText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(jLabelConnectionStatusText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabelConnectInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jButton1))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabelCouldNotDetect)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabelPossibleConnectionErrors, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -71,48 +100,45 @@ public class DisconnectedPanel extends javax.swing.JPanel {
 
         jPanelContentInfo.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelConnectivityIssueText.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabelConnectivityIssueText.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelConnectivityIssueText.setText("Info on the connectivity issue");
+        jLabelCouldNotFindIcom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/OpenSIMKitConnectionError.png"))); // NOI18N
 
         org.jdesktop.layout.GroupLayout jPanelContentInfoLayout = new org.jdesktop.layout.GroupLayout(jPanelContentInfo);
         jPanelContentInfo.setLayout(jPanelContentInfoLayout);
         jPanelContentInfoLayout.setHorizontalGroup(
             jPanelContentInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelContentInfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabelConnectivityIssueText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                .addContainerGap())
+                .add(16, 16, 16)
+                .add(jLabelCouldNotFindIcom)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanelContentInfoLayout.setVerticalGroup(
             jPanelContentInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelContentInfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabelConnectivityIssueText)
-                .addContainerGap(358, Short.MAX_VALUE))
+                .add(105, 105, 105)
+                .add(jLabelCouldNotFindIcom)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
-        jPanelContentHelp.setBackground(new java.awt.Color(0, 65, 108));
+        jPanelContentHelp.setBackground(new java.awt.Color(255, 204, 102));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html><div style=\"width:100%\">For help and support from the SIMKit Community...</div></html>");
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel1.setText("<html><div style=\"width:100%\">Need some help?</div></html>");
 
         org.jdesktop.layout.GroupLayout jPanelContentHelpLayout = new org.jdesktop.layout.GroupLayout(jPanelContentHelp);
         jPanelContentHelp.setLayout(jPanelContentHelpLayout);
         jPanelContentHelpLayout.setHorizontalGroup(
             jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelContentHelpLayout.createSequentialGroup()
-                .addContainerGap()
+                .add(87, 87, 87)
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanelContentHelpLayout.setVerticalGroup(
             jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelContentHelpLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(358, Short.MAX_VALUE))
+                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout jPanelBottomRightContentLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRightContent);
@@ -122,15 +148,14 @@ public class DisconnectedPanel extends javax.swing.JPanel {
             .add(jPanelBottomRightContentLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanelContentInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanelContentHelp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanelContentHelp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         jPanelBottomRightContentLayout.setVerticalGroup(
             jPanelBottomRightContentLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanelBottomRightContentLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanelBottomRightContentLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelBottomRightContentLayout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanelBottomRightContentLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jPanelContentInfo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanelContentHelp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -143,8 +168,8 @@ public class DisconnectedPanel extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelBottomRightHeading, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanelBottomRightContent, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jPanelBottomRightHeading, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelBottomRightContent, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -158,10 +183,14 @@ public class DisconnectedPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelConnectionStatus;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelConnectInfo;
     private javax.swing.JLabel jLabelConnectionStatusText;
-    private javax.swing.JLabel jLabelConnectivityIssueText;
+    private javax.swing.JLabel jLabelCouldNotDetect;
+    private javax.swing.JLabel jLabelCouldNotFindIcom;
+    private javax.swing.JLabel jLabelPossibleConnectionErrors;
     private javax.swing.JPanel jPanelBottomRightContent;
     private javax.swing.JPanel jPanelBottomRightHeading;
     private javax.swing.JPanel jPanelContentHelp;
