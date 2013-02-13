@@ -9,8 +9,6 @@ package org.opensimkit.utilities;
  * @author ahmedmaawy
  */
 
-import java.util.Enumeration;
-import java.util.ArrayList;
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
@@ -21,6 +19,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -219,6 +219,7 @@ public class SerialPorts {
     
     private void runCommand(String command)
     {
+        serialPortReturnValue = "";
         printStream.print(command);
     }
     
@@ -233,9 +234,12 @@ public class SerialPorts {
         runCommand(CMD_READ_ALL_MESSAGES);
         
         try {
-            Thread.sleep(500);
+            while(serialPortReturnValue.trim().equals(""))
+                Thread.sleep(500);
         } catch (InterruptedException ex) {
             Logger.getLogger(SerialPorts.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return null;
         }
         
         return serialPortReturnValue;
@@ -252,6 +256,15 @@ public class SerialPorts {
     {
         String requestWriteCommand = CMD_REQUEST_WRITE_MESSAGE.replace("{{ message_contact }}", contact);
         runCommand(requestWriteCommand);
+        
+        try {
+            while(serialPortReturnValue.trim().equals(""))
+                Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SerialPorts.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return false;
+        }
         
         if(!serialPortReturnValue.contains(">")) {
             String messageToWrite = (CMD_WRITE_MESSAGE_TO_MEMORY.replace("{{ message }}", message)).concat(String.valueOf(CTRL_Z));
