@@ -71,7 +71,7 @@
         <Component class="javax.swing.JLabel" name="jLabelLiveEditing">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Grande" size="24" style="1"/>
+              <Font name="Lucida Grande" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="You are currently editing a SIM card"/>
           </Properties>
@@ -136,7 +136,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jScrollPaneMessages" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                               <Component id="jSeparator2" min="-2" pref="331" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -155,7 +155,7 @@
               <Properties>
                 <Property name="verticalScrollBarPolicy" type="int" value="22"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[100, 300]"/>
+                  <Dimension value="[120, 300]"/>
                 </Property>
                 <Property name="viewportView" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                   <ComponentRef name="messagesPanel"/>
@@ -258,6 +258,9 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
             </Component>
@@ -278,6 +281,9 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEjectActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -236,9 +236,9 @@ public class SettingsFrame extends javax.swing.JFrame {
             }
         }
         else {
+            OpenSIMKit.serialPorts = null;
             serialPorts.disconnectPort();
             
-            OpenSIMKit.serialPorts = null;
             OpenSIMKit.mainFrame.setDisconnectedInterface();
         }
         

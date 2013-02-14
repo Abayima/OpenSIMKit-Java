@@ -6,6 +6,9 @@ package org.opensimkit;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import org.opensimkit.utilities.Messages;
 
 /**
  *
@@ -85,7 +88,7 @@ public class ConnectedPanel extends javax.swing.JPanel {
 
         jPanelConnectedTop.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelLiveEditing.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabelLiveEditing.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabelLiveEditing.setText("You are currently editing a SIM card");
 
         org.jdesktop.layout.GroupLayout jPanelConnectedTopLayout = new org.jdesktop.layout.GroupLayout(jPanelConnectedTop);
@@ -108,7 +111,7 @@ public class ConnectedPanel extends javax.swing.JPanel {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jScrollPaneMessages.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPaneMessages.setPreferredSize(new java.awt.Dimension(100, 300));
+        jScrollPaneMessages.setPreferredSize(new java.awt.Dimension(120, 300));
         jScrollPaneMessages.setViewportView(messagesPanel);
 
         org.jdesktop.layout.GroupLayout messagesPanelLayout = new org.jdesktop.layout.GroupLayout(messagesPanel);
@@ -142,7 +145,7 @@ public class ConnectedPanel extends javax.swing.JPanel {
                 .add(jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jScrollPaneMessages, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanelLiveEditLayout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
+                        .add(0, 8, Short.MAX_VALUE)
                         .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 331, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -154,12 +157,22 @@ public class ConnectedPanel extends javax.swing.JPanel {
 
         jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/SaveButton.png"))); // NOI18N
         jButtonSave.setBorder(null);
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
 
         jLabelAutoSave1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabelAutoSave1.setText("<html> <div style=\"width:100%\"> <p>Edit the text in any of the boxes in the list on the left</p> <br/> <p>When you have finished editing click on the save button below to store those messages on card.</p> </div> </html>");
 
         jButtonEject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/EjectButton.png"))); // NOI18N
         jButtonEject.setBorder(null);
+        jButtonEject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEjectActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanelLiveEditHelpLayout = new org.jdesktop.layout.GroupLayout(jPanelLiveEditHelp);
         jPanelLiveEditHelp.setLayout(jPanelLiveEditHelpLayout);
@@ -240,6 +253,37 @@ public class ConnectedPanel extends javax.swing.JPanel {
                 .add(jPanelConnectedBottom, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        // TODO add your handling code here:
+        ArrayList<JTextArea> textAreaList = messagesPanel.getjTextAreaList();
+        ArrayList<String> items = new ArrayList<String>();
+        int numItems = textAreaList.size();
+        
+        for(int itemLoop = 0; itemLoop < numItems; itemLoop ++) {
+            items.add(textAreaList.get(itemLoop).getText());
+        }
+        
+        // Clear all messages
+        
+        if(OpenSIMKit.serialPorts.saveMessages("123", items, true))
+        {
+            JOptionPane.showMessageDialog(this, "All messages saved");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Not all messages were succesfully saved");
+        }
+        
+        String simMessages = OpenSIMKit.serialPorts.getAllMessages();
+        Messages messages = new Messages(simMessages);
+        
+        messagesPanel.setItems(messages.getMessages());
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonEjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEjectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEject;

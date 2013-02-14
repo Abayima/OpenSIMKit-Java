@@ -24,6 +24,7 @@ import java.util.Enumeration;
 import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.opensimkit.OpenSIMKit;
 
 public class SerialPorts {
     private ArrayList<CommPortIdentifier> serialPorts;
@@ -47,6 +48,7 @@ public class SerialPorts {
     final String CMD_READ_ALL_MESSAGES = "AT+CMGL=\"ALL\"\r\n";
     final String CMD_READ_MESSAGE = "AT+CMGR={{ message_index }}\r\n";
     final String CMD_DETAILED_ERRORS = "AT+CMEE=1";
+    final String CMD_DELETE_ALL_MESSAGES = "AT+CMGD=1,4\r\n";
 
     // Full write command
     final String CMD_WRITE_MESSAGE_TO_MEMORY = "AT+CMGW=\"{{ message_contact }}\"\r{{ message }}";
@@ -79,6 +81,11 @@ public class SerialPorts {
                 // Unknown port
             }
         }
+    }
+    
+    public static synchronized void setSerialPortReturnValue(String value)
+    {
+        serialPortReturnValue = value;
     }
     
     /**
@@ -161,6 +168,14 @@ public class SerialPorts {
                 @Override
                 public void run()
                 {
+                    try {
+                        serialPort.getInputStream().close();
+                        serialPort.getOutputStream().close();
+                    }
+                    catch(IOException ex) {
+                        Logger.getLogger(SerialPorts.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                     serialPort.removeEventListener();
                     serialPort.close();
                 }
@@ -224,6 +239,34 @@ public class SerialPorts {
     }
     
     /**
+     * Wait for output
+     */
+    
+    private String waitForOutput()
+    {
+        int numAttempts = 5;
+        int currentAttempt = 1;
+        
+        try {
+            while(serialPortReturnValue.trim().equals("") && currentAttempt < numAttempts) {
+                Thread.sleep(500);
+                currentAttempt ++;
+            }
+            
+            if(currentAttempt == numAttempts && serialPortReturnValue.trim().equals(""))
+            {
+                return null;
+            }  
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SerialPorts.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return null;
+        }
+        
+        return serialPortReturnValue.trim();
+    }
+    
+    /**
      * Get all messages in the system
      * 
      * @return String
@@ -233,16 +276,9 @@ public class SerialPorts {
     {
         runCommand(CMD_READ_ALL_MESSAGES);
         
-        try {
-            while(serialPortReturnValue.trim().equals(""))
-                Thread.sleep(500);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SerialPorts.class.getName()).log(Level.SEVERE, null, ex);
-            
-            return null;
-        }
+        String returnValue = waitForOutput();
         
-        return serialPortReturnValue;
+        return returnValue;
     }
     
     /**
@@ -257,23 +293,63 @@ public class SerialPorts {
         String requestWriteCommand = CMD_REQUEST_WRITE_MESSAGE.replace("{{ message_contact }}", contact);
         runCommand(requestWriteCommand);
         
-        try {
-            while(serialPortReturnValue.trim().equals(""))
-                Thread.sleep(500);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SerialPorts.class.getName()).log(Level.SEVERE, null, ex);
-            
-            return false;
-        }
+        String returnValue = waitForOutput();
         
-        if(!serialPortReturnValue.contains(">")) {
-            String messageToWrite = (CMD_WRITE_MESSAGE_TO_MEMORY.replace("{{ message }}", message)).concat(String.valueOf(CTRL_Z));
+        if(returnValue.contains(">")) {
+            String messageToWrite = (CMD_DO_WRITE_AFTER_REQUEST.replace("{{ message }}", message)).concat(String.valueOf(CTRL_Z));
             runCommand(messageToWrite);
+            
+            returnValue = waitForOutput();
+            
+            if(returnValue.contains("ERROR"))
+            {
+                return false;
+            }
             
             return true;
         }
         
         return false;
+    }
+    
+    /**
+     * Save a number of messages to the SIM Card
+     * 
+     * @param contact
+     * @param messages
+     * @param clearAll
+     * @return 
+     */
+    
+    public boolean saveMessages(String contact, ArrayList<String> messages, boolean clearAll)
+    {
+        String returnValue = "";
+        
+        if(clearAll) {
+            runCommand(CMD_DELETE_ALL_MESSAGES);
+            returnValue = waitForOutput();
+            
+            if(returnValue == null || returnValue.contains("ERROR")) {
+                return false;
+            }
+        }
+        
+        int numItems = messages.size();
+        
+        for(int itemLoop = 0; itemLoop < numItems; itemLoop ++)
+        {
+            // Rule out empty messages
+            if(!messages.get(itemLoop).trim().equals(""))
+            {
+                // Save message
+                if(!saveMessage(contact, messages.get(itemLoop)))
+                {
+                    return false;
+                }
+            } 
+        }
+        
+        return true;
     }
 
     /**

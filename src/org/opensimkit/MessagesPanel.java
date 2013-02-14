@@ -40,6 +40,11 @@ public class MessagesPanel extends javax.swing.JPanel {
         
         numItems = items.size();
         
+        jTextAreaList.clear();
+        jScrollPaneList.clear();
+        
+        this.removeAll();
+        
         for(int itemLoop = 0; itemLoop <= numItems; itemLoop ++) {
             JScrollPane jScrollPaneMessage = new javax.swing.JScrollPane();
             JTextArea jTextAreaMessage = new javax.swing.JTextArea();

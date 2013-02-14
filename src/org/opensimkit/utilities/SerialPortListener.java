@@ -49,11 +49,11 @@ public class SerialPortListener implements SerialPortEventListener {
                         readLine = bufferedReader.readLine();
                         output = output.concat(readLine + "\r\n");
                         
-                        if(readLine.contains("OK") || readLine.contains("ERROR"))
+                        if(readLine.contains("OK") || readLine.contains("ERROR") || readLine.trim().equals(">"))
                             stop = true;
                     }
                     
-                    SerialPorts.serialPortReturnValue = output;
+                    SerialPorts.setSerialPortReturnValue(output);
                     
                     bufferedReader.close();
                 } catch (IOException ex) {
