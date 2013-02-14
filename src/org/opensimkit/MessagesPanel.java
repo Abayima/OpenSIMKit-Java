@@ -25,15 +25,9 @@ public class MessagesPanel extends javax.swing.JPanel {
     private ArrayList<JScrollPane> jScrollPaneList = new ArrayList<JScrollPane>();
     private ArrayList<JTextArea> jTextAreaList = new ArrayList<JTextArea>();
     private int numItems;
-    private JScrollPane jScrollPane;
     
     public MessagesPanel() {
         initComponents();
-        
-        jScrollPane = new JScrollPane(this);
-        jScrollPane.setViewportView(this);
-        jScrollPane.setPreferredSize(new Dimension(200, 300));
-        jScrollPane.setVisible(true);
     }
     
     /**

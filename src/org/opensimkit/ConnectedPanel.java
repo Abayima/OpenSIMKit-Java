@@ -66,12 +66,12 @@ public class ConnectedPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        messagesPanel1 = new org.opensimkit.MessagesPanel();
         jPanelConnectedTop = new javax.swing.JPanel();
         jLabelLiveEditing = new javax.swing.JLabel();
         jPanelConnectedBottom = new javax.swing.JPanel();
         jPanelLiveEdit = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPaneMessages = new javax.swing.JScrollPane();
         messagesPanel = new org.opensimkit.MessagesPanel();
         jPanelLiveEditHelp = new javax.swing.JPanel();
         jLabelAutoSave = new javax.swing.JLabel();
@@ -79,17 +79,6 @@ public class ConnectedPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabelAutoSave1 = new javax.swing.JLabel();
         jButtonEject = new javax.swing.JButton();
-
-        org.jdesktop.layout.GroupLayout messagesPanel1Layout = new org.jdesktop.layout.GroupLayout(messagesPanel1);
-        messagesPanel1.setLayout(messagesPanel1Layout);
-        messagesPanel1Layout.setHorizontalGroup(
-            messagesPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 100, Short.MAX_VALUE)
-        );
-        messagesPanel1Layout.setVerticalGroup(
-            messagesPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 100, Short.MAX_VALUE)
-        );
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(500, 300));
@@ -118,6 +107,10 @@ public class ConnectedPanel extends javax.swing.JPanel {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jScrollPaneMessages.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPaneMessages.setPreferredSize(new java.awt.Dimension(100, 300));
+        jScrollPaneMessages.setViewportView(messagesPanel);
+
         org.jdesktop.layout.GroupLayout messagesPanelLayout = new org.jdesktop.layout.GroupLayout(messagesPanel);
         messagesPanel.setLayout(messagesPanelLayout);
         messagesPanelLayout.setHorizontalGroup(
@@ -126,8 +119,10 @@ public class ConnectedPanel extends javax.swing.JPanel {
         );
         messagesPanelLayout.setVerticalGroup(
             messagesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 0, Short.MAX_VALUE)
+            .add(0, 331, Short.MAX_VALUE)
         );
+
+        jScrollPaneMessages.setViewportView(messagesPanel);
 
         org.jdesktop.layout.GroupLayout jPanelLiveEditLayout = new org.jdesktop.layout.GroupLayout(jPanelLiveEdit);
         jPanelLiveEdit.setLayout(jPanelLiveEditLayout);
@@ -135,20 +130,20 @@ public class ConnectedPanel extends javax.swing.JPanel {
             jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelLiveEditLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(messagesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jScrollPaneMessages, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelLiveEditLayout.setVerticalGroup(
             jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanelLiveEditLayout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jScrollPaneMessages, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanelLiveEditLayout.createSequentialGroup()
-                        .add(0, 4, Short.MAX_VALUE)
-                        .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 331, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(messagesPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 331, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -256,9 +251,9 @@ public class ConnectedPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelConnectedTop;
     private javax.swing.JPanel jPanelLiveEdit;
     private javax.swing.JPanel jPanelLiveEditHelp;
+    private javax.swing.JScrollPane jScrollPaneMessages;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private org.opensimkit.MessagesPanel messagesPanel;
-    private org.opensimkit.MessagesPanel messagesPanel1;
     // End of variables declaration//GEN-END:variables
 }
