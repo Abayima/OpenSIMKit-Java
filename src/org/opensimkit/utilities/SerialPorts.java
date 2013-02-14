@@ -83,6 +83,12 @@ public class SerialPorts {
         }
     }
     
+    /**
+     * Synchronized variable access
+     * 
+     * @param value 
+     */
+    
     public static synchronized void setSerialPortReturnValue(String value)
     {
         serialPortReturnValue = value;
@@ -151,6 +157,113 @@ public class SerialPorts {
         }
         
         return true;
+    }
+    
+    /**
+     * Auto connect to an open port
+     * 
+     * @return 
+     */
+    
+    public boolean autoConnect()
+    {
+        OpenSIMKit.serialPorts = null;
+        
+        String osName = System.getProperty("os.name").toLowerCase();       
+        OSUtilities osUtilities = new OSUtilities(osName);
+        
+        if(osUtilities.isWindows())
+        {
+            return winAutoConnect();
+        }
+        else if(osUtilities.isMac())
+        {
+            return macAutoConnect();
+        }
+        else if(osUtilities.isUnix())
+        {
+            return nixAutoConnect();
+        }
+        else if(osUtilities.isSolaris())
+        {
+            return solarisAutoConnect();
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Auto connect to a Windows port
+     * 
+     * @return 
+     */
+    
+    private boolean winAutoConnect()
+    {
+        return false;
+    }
+    
+    /**
+     * Auto connect to a Mac port
+     * 
+     * @return 
+     */
+    
+    private boolean macAutoConnect()
+    {        
+        final String pattern = "tty.usb";
+        
+        int currentPortIndex = 0;
+        
+        for(int portLoop = 0; portLoop < serialPortList.size(); portLoop ++)
+        {
+            // Valid candidate to connect to ?
+            if(serialPortList.get(portLoop).contains(pattern)) 
+            {
+                if(connectPort(portLoop)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Auto connect to a Unix port
+     * 
+     * @return 
+     */
+    
+    private boolean nixAutoConnect()
+    {
+        final String pattern = "ttyUSB";
+        
+        int currentPortIndex = 0;
+        
+        for(int portLoop = 0; portLoop < serialPortList.size(); portLoop ++)
+        {
+            // Valid candidate to connect to ?
+            if(serialPortList.get(portLoop).contains(pattern)) 
+            {
+                if(connectPort(portLoop)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Auto connect to a Solaris port
+     * 
+     * @return 
+     */
+    
+    private boolean solarisAutoConnect()
+    {
+        return false;
     }
     
     /**

@@ -233,13 +233,16 @@ public class SettingsFrame extends javax.swing.JFrame {
                 jButtonConnect.setText("Disconnect");
                 OpenSIMKit.serialPorts = serialPorts;
                 OpenSIMKit.mainFrame.setConnectedInterface();
+                
+                this.dispose();
             }
         }
         else {
             OpenSIMKit.serialPorts = null;
             serialPorts.disconnectPort();
-            
             OpenSIMKit.mainFrame.setDisconnectedInterface();
+            
+            this.dispose();
         }
         
     }//GEN-LAST:event_jButtonConnectActionPerformed

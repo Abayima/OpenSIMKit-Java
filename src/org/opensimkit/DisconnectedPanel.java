@@ -5,6 +5,7 @@
 package org.opensimkit;
 
 import javax.swing.JPanel;
+import org.opensimkit.utilities.SerialPorts;
 
 /**
  *
@@ -32,7 +33,7 @@ public class DisconnectedPanel extends javax.swing.JPanel {
         jPanelBottomRightHeading = new javax.swing.JPanel();
         jLabelConnectionStatusText = new javax.swing.JLabel();
         jLabelConnectInfo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonAutoConnect = new javax.swing.JButton();
         jLabelCouldNotDetect = new javax.swing.JLabel();
         jLabelPossibleConnectionErrors = new javax.swing.JLabel();
         jPanelBottomRightContent = new javax.swing.JPanel();
@@ -53,8 +54,13 @@ public class DisconnectedPanel extends javax.swing.JPanel {
         jLabelConnectInfo.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabelConnectInfo.setText("<html><div style=\"width:100%\"><p>If you want to rescan your system for SIM card, click the button here</p></div></html>");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/CheckAgainButton.png"))); // NOI18N
-        jButton1.setBorder(null);
+        jButtonAutoConnect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/CheckAgainButton.png"))); // NOI18N
+        jButtonAutoConnect.setBorder(null);
+        jButtonAutoConnect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAutoConnectActionPerformed(evt);
+            }
+        });
 
         jLabelCouldNotDetect.setText("SIMKit could not detect any connected cards that can be used at the moment");
 
@@ -71,7 +77,7 @@ public class DisconnectedPanel extends javax.swing.JPanel {
                         .add(84, 84, 84)
                         .add(jLabelConnectInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 250, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton1)
+                        .add(jButtonAutoConnect)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelBottomRightHeadingLayout.createSequentialGroup()
                         .addContainerGap()
@@ -87,7 +93,7 @@ public class DisconnectedPanel extends javax.swing.JPanel {
                 .add(jLabelConnectionStatusText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jButton1)
+                    .add(jButtonAutoConnect)
                     .add(jLabelConnectInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jLabelCouldNotDetect)
@@ -182,8 +188,19 @@ public class DisconnectedPanel extends javax.swing.JPanel {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAutoConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAutoConnectActionPerformed
+        // TODO add your handling code here:
+        SerialPorts serialPorts = new SerialPorts();
+        if(serialPorts.autoConnect())
+        {
+            OpenSIMKit.serialPorts = serialPorts;
+            OpenSIMKit.mainFrame.setConnectedInterface();
+        }
+    }//GEN-LAST:event_jButtonAutoConnectActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAutoConnect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelConnectInfo;

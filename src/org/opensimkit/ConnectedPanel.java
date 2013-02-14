@@ -283,6 +283,10 @@ public class ConnectedPanel extends javax.swing.JPanel {
 
     private void jButtonEjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjectActionPerformed
         // TODO add your handling code here:
+        OpenSIMKit.serialPorts.disconnectPort();
+        OpenSIMKit.serialPorts = null;
+        
+        OpenSIMKit.mainFrame.setDisconnectedInterface();
     }//GEN-LAST:event_jButtonEjectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
