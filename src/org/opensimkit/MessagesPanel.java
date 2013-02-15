@@ -53,6 +53,8 @@ public class MessagesPanel extends javax.swing.JPanel {
             
             if(itemLoop < numItems)
                 jTextAreaMessage.setText(items.get(itemLoop));
+            
+            jTextAreaMessage.setLineWrap(true);
 
             jTextAreaMessage.setColumns(20);
             jTextAreaMessage.setRows(5);
