@@ -125,33 +125,10 @@ public class ConnectedPanel extends javax.swing.JPanel {
         );
         messagesPanelLayout.setVerticalGroup(
             messagesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 331, Short.MAX_VALUE)
+            .add(0, 383, Short.MAX_VALUE)
         );
 
         jScrollPaneMessages.setViewportView(messagesPanel);
-
-        org.jdesktop.layout.GroupLayout jPanelLiveEditLayout = new org.jdesktop.layout.GroupLayout(jPanelLiveEdit);
-        jPanelLiveEdit.setLayout(jPanelLiveEditLayout);
-        jPanelLiveEditLayout.setHorizontalGroup(
-            jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanelLiveEditLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPaneMessages, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanelLiveEditLayout.setVerticalGroup(
-            jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jScrollPaneMessages, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanelLiveEditLayout.createSequentialGroup()
-                        .add(0, 8, Short.MAX_VALUE)
-                        .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 331, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
 
         jPanelLiveEditHelp.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -184,29 +161,21 @@ public class ConnectedPanel extends javax.swing.JPanel {
             .add(jPanelLiveEditHelpLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanelLiveEditHelpLayout.createSequentialGroup()
+                    .add(jLabelAutoSave1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jSeparator1)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditHelpLayout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
                         .add(jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 320, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditHelpLayout.createSequentialGroup()
-                                .add(jButtonSave)
-                                .addContainerGap())))
-                    .add(jPanelLiveEditHelpLayout.createSequentialGroup()
-                        .add(jSeparator1)
-                        .addContainerGap())
-                    .add(jPanelLiveEditHelpLayout.createSequentialGroup()
-                        .add(jLabelAutoSave1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 320, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditHelpLayout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jButtonEject)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jButtonSave)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 303, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jButtonEject))))
                 .addContainerGap())
         );
         jPanelLiveEditHelpLayout.setVerticalGroup(
             jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelLiveEditHelpLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .add(jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .add(jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 113, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButtonSave)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -214,7 +183,32 @@ public class ConnectedPanel extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabelAutoSave1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButtonEject))
+                .add(jButtonEject)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+
+        org.jdesktop.layout.GroupLayout jPanelLiveEditLayout = new org.jdesktop.layout.GroupLayout(jPanelLiveEdit);
+        jPanelLiveEdit.setLayout(jPanelLiveEditLayout);
+        jPanelLiveEditLayout.setHorizontalGroup(
+            jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanelLiveEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPaneMessages, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanelLiveEditHelp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelLiveEditLayout.setVerticalGroup(
+            jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanelLiveEditLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPaneMessages, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                    .add(jSeparator2))
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelLiveEditHelp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         org.jdesktop.layout.GroupLayout jPanelConnectedBottomLayout = new org.jdesktop.layout.GroupLayout(jPanelConnectedBottom);
@@ -223,18 +217,13 @@ public class ConnectedPanel extends javax.swing.JPanel {
             jPanelConnectedBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelConnectedBottomLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanelLiveEdit, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanelLiveEditHelp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .add(jPanelLiveEdit, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         jPanelConnectedBottomLayout.setVerticalGroup(
             jPanelConnectedBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelConnectedBottomLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanelConnectedBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanelLiveEdit, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanelLiveEditHelp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .add(jPanelLiveEdit, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);

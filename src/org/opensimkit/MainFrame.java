@@ -4,6 +4,12 @@
  */
 package org.opensimkit;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.opensimkit.utilities.Messages;
 
 /**
@@ -19,6 +25,10 @@ public final class MainFrame extends javax.swing.JFrame {
     private boolean dataCollectionInterfaceConstructed = false;
     private boolean connectedInterfaceConstructed = false;
     private boolean disconnectedInterfaceConstructed = false;
+    
+    private final String openSIMKitUrl = "http://opensimkit.com/";
+    private final String gitHubUrl = "https://github.com/Abayima/OpenSIMKit-Java";
+    private final String twitterUrl = "https://twitter.com/opensimkit";
     
     /**
      * Creates new form MainJFrame
@@ -41,27 +51,28 @@ public final class MainFrame extends javax.swing.JFrame {
     
     public void setAnonymousDataCollectionInterface()
     {
-        if(!dataCollectionInterfaceConstructed) {
-            org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
-            jPanelBottomRight.setLayout(jPanelBottomRightLayout);
+        
+        jPanelBottomRight.removeAll();
 
-            jPanelBottomRightLayout.setHorizontalGroup(
-                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanelBottomRightLayout.createSequentialGroup()
-                    .add(permissionsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(0, 0, Short.MAX_VALUE))
-            );
-            jPanelBottomRightLayout.setVerticalGroup(
-                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanelBottomRightLayout.createSequentialGroup()
-                    .add(jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(permissionsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(0, 0, Short.MAX_VALUE))
-            );
-            
-            dataCollectionInterfaceConstructed = true;
-        }
+        org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
+        jPanelBottomRight.setLayout(jPanelBottomRightLayout);
+
+        jPanelBottomRightLayout.setHorizontalGroup(
+            jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanelBottomRightLayout.createSequentialGroup()
+                .add(permissionsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(0, 0, Short.MAX_VALUE))
+        );
+        jPanelBottomRightLayout.setVerticalGroup(
+            jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanelBottomRightLayout.createSequentialGroup()
+                .add(jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(permissionsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(0, 0, Short.MAX_VALUE))
+        );
+
+        dataCollectionInterfaceConstructed = true;
         
         permissionsPanel.setVisible(true);
         disconnectedPanel.setVisible(false);
@@ -76,27 +87,28 @@ public final class MainFrame extends javax.swing.JFrame {
     {
         // Contruct interface
         
-        if(!connectedInterfaceConstructed) {
-            org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
-            jPanelBottomRight.setLayout(jPanelBottomRightLayout);
+        
+        jPanelBottomRight.removeAll();
 
-            jPanelBottomRightLayout.setHorizontalGroup(
-                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanelBottomRightLayout.createSequentialGroup()
-                    .add(connectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(0, 0, Short.MAX_VALUE))
-            );
-            jPanelBottomRightLayout.setVerticalGroup(
-                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanelBottomRightLayout.createSequentialGroup()
-                    .add(jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(connectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(0, 0, Short.MAX_VALUE))
-            );
-            
-            connectedInterfaceConstructed = true;
-        }
+        org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
+        jPanelBottomRight.setLayout(jPanelBottomRightLayout);
+
+        jPanelBottomRightLayout.setHorizontalGroup(
+            jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanelBottomRightLayout.createSequentialGroup()
+                .add(connectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(0, 0, Short.MAX_VALUE))
+        );
+        jPanelBottomRightLayout.setVerticalGroup(
+            jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanelBottomRightLayout.createSequentialGroup()
+                .add(jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(connectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(0, 0, Short.MAX_VALUE))
+        );
+
+        connectedInterfaceConstructed = true;
         
         // Toggle interface
         
@@ -122,28 +134,28 @@ public final class MainFrame extends javax.swing.JFrame {
     {
         
         // Construct interface
-        
-        if(!disconnectedInterfaceConstructed) {
-            org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
-            jPanelBottomRight.setLayout(jPanelBottomRightLayout);
-
-            jPanelBottomRightLayout.setHorizontalGroup(
-                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanelBottomRightLayout.createSequentialGroup()
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(disconnectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 709, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(0, 0, Short.MAX_VALUE))
-            );
-            jPanelBottomRightLayout.setVerticalGroup(
-                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanelBottomRightLayout.createSequentialGroup()
-                    .add(jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(disconnectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 512, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(0, 0, Short.MAX_VALUE))
-            );
             
-            disconnectedInterfaceConstructed = true;
-        }
+        jPanelBottomRight.removeAll();
+
+        org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
+        jPanelBottomRight.setLayout(jPanelBottomRightLayout);
+
+        jPanelBottomRightLayout.setHorizontalGroup(
+            jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanelBottomRightLayout.createSequentialGroup()
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(disconnectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 709, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(0, 0, Short.MAX_VALUE))
+        );
+        jPanelBottomRightLayout.setVerticalGroup(
+            jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanelBottomRightLayout.createSequentialGroup()
+                .add(jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(disconnectedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 512, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(0, 0, Short.MAX_VALUE))
+        );
+
+        disconnectedInterfaceConstructed = true;
         
         // Toggle interface
         
@@ -167,8 +179,10 @@ public final class MainFrame extends javax.swing.JFrame {
         jLabelAboutOSK = new javax.swing.JLabel();
         jSeparatorSocialMediaTop = new javax.swing.JSeparator();
         jSeparatorSocialMediaBottom = new javax.swing.JSeparator();
-        jLabelSocialMediaIcons = new javax.swing.JLabel();
         jLabelConnectWithUs = new javax.swing.JLabel();
+        jButtonSIMKitConnect = new javax.swing.JButton();
+        jButtonGitHubConnect = new javax.swing.JButton();
+        jButtonTwitterConnect = new javax.swing.JButton();
         jPanelBottomRight = new javax.swing.JPanel();
         jLabelAbayimaLogo = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
@@ -191,20 +205,32 @@ public final class MainFrame extends javax.swing.JFrame {
         jLabelAboutOSK.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabelAboutOSK.setText("<html><div style=\"width:100%;\">SIMKIT is a free and open source software designed to turn the world's feature phones into low cost e-readers</div></html>");
 
-        jLabelSocialMediaIcons.setText("<html>"
-            + "<img src=\""
-            + MainFrame.class.getResource("/org/opensimkit/resources/SIMKitConnect.png")
-            + "\">"
-            + "<img src=\""
-            + MainFrame.class.getResource("/org/opensimkit/resources/GitHubConnect.png")
-            + "\">"
-            + "<img src=\""
-            + MainFrame.class.getResource("/org/opensimkit/resources/TwitterConnect.png")
-            + "\">"
-            + "</html>");
-
         jLabelConnectWithUs.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
         jLabelConnectWithUs.setText("Connect with the OpenSIMKit Project");
+
+        jButtonSIMKitConnect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/SIMKitConnect.png"))); // NOI18N
+        jButtonSIMKitConnect.setBorder(null);
+        jButtonSIMKitConnect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSIMKitConnectActionPerformed(evt);
+            }
+        });
+
+        jButtonGitHubConnect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/GitHubConnect.png"))); // NOI18N
+        jButtonGitHubConnect.setBorder(null);
+        jButtonGitHubConnect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGitHubConnectActionPerformed(evt);
+            }
+        });
+
+        jButtonTwitterConnect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/TwitterConnect.png"))); // NOI18N
+        jButtonTwitterConnect.setBorder(null);
+        jButtonTwitterConnect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTwitterConnectActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanelBottomLeftLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomLeft);
         jPanelBottomLeft.setLayout(jPanelBottomLeftLayout);
@@ -217,18 +243,22 @@ public final class MainFrame extends javax.swing.JFrame {
                         .add(jLabelAboutOSK, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(jPanelBottomLeftLayout.createSequentialGroup()
-                        .add(jPanelBottomLeftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jSeparatorSocialMediaBottom)
-                            .add(jSeparatorSocialMediaTop))
+                        .add(jSeparatorSocialMediaTop)
                         .addContainerGap())))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelBottomLeftLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jSeparatorSocialMediaBottom)
+                .addContainerGap())
             .add(jPanelBottomLeftLayout.createSequentialGroup()
+                .add(26, 26, 26)
                 .add(jPanelBottomLeftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabelConnectWithUs)
                     .add(jPanelBottomLeftLayout.createSequentialGroup()
-                        .add(28, 28, 28)
-                        .add(jLabelSocialMediaIcons))
-                    .add(jPanelBottomLeftLayout.createSequentialGroup()
-                        .add(20, 20, 20)
-                        .add(jLabelConnectWithUs)))
+                        .add(jButtonSIMKitConnect)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButtonGitHubConnect)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButtonTwitterConnect)))
                 .add(0, 0, Short.MAX_VALUE))
         );
         jPanelBottomLeftLayout.setVerticalGroup(
@@ -238,13 +268,16 @@ public final class MainFrame extends javax.swing.JFrame {
                 .add(jLabelAboutOSK, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(49, 49, 49)
                 .add(jSeparatorSocialMediaTop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(8, 8, 8)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabelConnectWithUs)
-                .add(18, 18, 18)
-                .add(jLabelSocialMediaIcons)
-                .add(35, 35, 35)
+                .add(8, 8, 8)
+                .add(jPanelBottomLeftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jButtonSIMKitConnect)
+                    .add(jButtonGitHubConnect)
+                    .add(jButtonTwitterConnect))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jSeparatorSocialMediaBottom, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelBottomRight.setBackground(new java.awt.Color(255, 255, 255));
@@ -258,7 +291,7 @@ public final class MainFrame extends javax.swing.JFrame {
         );
         jPanelBottomRightLayout.setVerticalGroup(
             jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 506, Short.MAX_VALUE)
+            .add(0, 560, Short.MAX_VALUE)
         );
 
         jLabelAbayimaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/AbayimaLogo.png"))); // NOI18N
@@ -297,7 +330,7 @@ public final class MainFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(SIMKitLogo)
                     .add(jLabelAbayimaLogo))
@@ -317,13 +350,54 @@ public final class MainFrame extends javax.swing.JFrame {
         settingsFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItemSettingsActionPerformed
 
+    private void jButtonSIMKitConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSIMKitConnectActionPerformed
+        // TODO add your handling code here:
+        try {            
+            URI uri = new URI(this.openSIMKitUrl);
+            Desktop dt = Desktop.getDesktop();
+            dt.browse(uri);
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSIMKitConnectActionPerformed
+
+    private void jButtonGitHubConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGitHubConnectActionPerformed
+        // TODO add your handling code here:
+        try {            
+            URI uri = new URI(this.gitHubUrl);
+            Desktop dt = Desktop.getDesktop();
+            dt.browse(uri);
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonGitHubConnectActionPerformed
+
+    private void jButtonTwitterConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTwitterConnectActionPerformed
+        // TODO add your handling code here:
+        try {            
+            URI uri = new URI(this.twitterUrl);
+            Desktop dt = Desktop.getDesktop();
+            dt.browse(uri);
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonTwitterConnectActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SIMKitLogo;
+    private javax.swing.JButton jButtonGitHubConnect;
+    private javax.swing.JButton jButtonSIMKitConnect;
     private javax.swing.JButton jButtonTwitter1;
+    private javax.swing.JButton jButtonTwitterConnect;
     private javax.swing.JLabel jLabelAbayimaLogo;
     private javax.swing.JLabel jLabelAboutOSK;
     private javax.swing.JLabel jLabelConnectWithUs;
-    private javax.swing.JLabel jLabelSocialMediaIcons;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemSettings;

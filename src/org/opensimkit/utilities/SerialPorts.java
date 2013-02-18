@@ -95,6 +95,131 @@ public class SerialPorts {
     }
     
     /**
+     * Set the serial port parameters
+     * 
+     * @param speed
+     * @param dataBits
+     * @param stopBits
+     * @param parity
+     * @return boolean
+     */
+    
+    public boolean setParameters(long speed, String dataBits, String stopBits, String parity)
+    {
+        try {
+            int speedValue;
+            int dataBitValue;
+            int stopBitValue;
+            int parityValue;
+            
+            // Baud rate
+            
+            if(speed == 75)
+            {
+                speedValue = 75;
+            }
+            else if(speed == 110)
+            {
+                speedValue = 110;
+            }
+            else if(speed == 300)
+            {
+                speedValue = 300;
+            }
+            else if(speed == 1200)
+            {
+                speedValue = 1200;
+            }
+            else if(speed == 4800)
+            {
+                speedValue = 4800;
+            }
+            else if(speed == 19200)
+            {
+                speedValue = 19200;
+            }
+            else if(speed == 38400)
+            {
+                speedValue = 38400;
+            }
+            else if(speed == 57600)
+            {
+                speedValue = 57600;
+            }
+            else if(speed == 115200)
+            {
+                speedValue = 115200;
+            }
+            else {
+                speedValue = 9600;
+            }
+            
+            // Data bits
+            
+            if(dataBits.equals("5"))
+            {
+                dataBitValue = SerialPort.DATABITS_5;
+            }
+            else if(dataBits.equals("6"))
+            {
+                dataBitValue = SerialPort.DATABITS_6;
+            }
+            else if(dataBits.equals("7"))
+            {
+                dataBitValue = SerialPort.DATABITS_7;
+            }
+            else 
+            {
+                dataBitValue = SerialPort.DATABITS_8;
+            }
+            
+            // Stop bits
+            
+            if(stopBits.equals("1.5"))
+            {
+                stopBitValue = SerialPort.STOPBITS_1_5;
+            }
+            else if(stopBits.equals("2"))
+            {
+                stopBitValue = SerialPort.STOPBITS_2;
+            }
+            else {
+                stopBitValue = SerialPort.STOPBITS_1;
+            }
+            
+            // Parity
+            
+            if(parity.equals("Mark"))
+            {
+                parityValue = SerialPort.PARITY_MARK;
+            }
+            else if(parity.equals("Odd"))
+            {
+                parityValue = SerialPort.PARITY_ODD;
+            }
+            else if(parity.equals("Even"))
+            {
+                parityValue = SerialPort.PARITY_EVEN;
+            }
+            else if(parity.equals("Space"))
+            {
+                parityValue = SerialPort.PARITY_SPACE;
+            }
+            else {
+                parityValue = SerialPort.PARITY_NONE;
+            }
+            
+            serialPort.setSerialPortParams(speedValue, dataBitValue, stopBitValue, parityValue);
+        } catch (UnsupportedCommOperationException ex) {
+            Logger.getLogger(SerialPorts.class.getName()).log(Level.SEVERE, null, ex);
+            
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /**
      * Connect to a serial port
      * 
      * @param portIndex
