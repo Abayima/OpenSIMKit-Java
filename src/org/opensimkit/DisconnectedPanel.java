@@ -41,6 +41,12 @@ public class DisconnectedPanel extends javax.swing.JPanel {
         jLabelCouldNotFindIcom = new javax.swing.JLabel();
         jPanelContentHelp = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabelHelpItem1 = new javax.swing.JLabel();
+        jLabelHelpIcon1 = new javax.swing.JLabel();
+        jLabelHelpItem2 = new javax.swing.JLabel();
+        jLabelHelpIcon2 = new javax.swing.JLabel();
+        jLabelHelpItem3 = new javax.swing.JLabel();
+        jLabelHelpIcon3 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -71,7 +77,7 @@ public class DisconnectedPanel extends javax.swing.JPanel {
         jPanelBottomRightHeading.setLayout(jPanelBottomRightHeadingLayout);
         jPanelBottomRightHeadingLayout.setHorizontalGroup(
             jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabelConnectionStatusText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jLabelConnectionStatusText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
             .add(jPanelBottomRightHeadingLayout.createSequentialGroup()
                 .add(jPanelBottomRightHeadingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanelBottomRightHeadingLayout.createSequentialGroup()
@@ -131,21 +137,61 @@ public class DisconnectedPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("<html><div style=\"width:100%\">Need some help?</div></html>");
 
+        jLabelHelpItem1.setText("<html><div style=\"width:100%\"><p>For step by step instructions on using OpenSIMKit, click here</p></div></html>");
+
+        jLabelHelpIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/HelpIcon.png"))); // NOI18N
+
+        jLabelHelpItem2.setText("<html><div style=\"width:100%\"><p>For a list of supported devices and ways to connect them, click here</p></div></html>");
+
+        jLabelHelpIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/HelpIcon.png"))); // NOI18N
+
+        jLabelHelpItem3.setText("<html><div style=\"width:100%\"><p>To get involved and contribute to the development of OpenSIMKit, click here</p></div></html>");
+
+        jLabelHelpIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/HelpIcon.png"))); // NOI18N
+
         org.jdesktop.layout.GroupLayout jPanelContentHelpLayout = new org.jdesktop.layout.GroupLayout(jPanelContentHelp);
         jPanelContentHelp.setLayout(jPanelContentHelpLayout);
         jPanelContentHelpLayout.setHorizontalGroup(
             jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelContentHelpLayout.createSequentialGroup()
-                .add(87, 87, 87)
+                .add(96, 96, 96)
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelContentHelpLayout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelContentHelpLayout.createSequentialGroup()
+                        .add(jLabelHelpIcon1)
+                        .add(18, 18, 18)
+                        .add(jLabelHelpItem1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 216, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelContentHelpLayout.createSequentialGroup()
+                        .add(jLabelHelpIcon2)
+                        .add(18, 18, 18)
+                        .add(jLabelHelpItem2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 216, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelContentHelpLayout.createSequentialGroup()
+                        .add(jLabelHelpIcon3)
+                        .add(18, 18, 18)
+                        .add(jLabelHelpItem3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 216, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanelContentHelpLayout.setVerticalGroup(
             jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelContentHelpLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabelHelpItem1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelHelpIcon1))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabelHelpItem2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelHelpIcon2))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabelHelpItem3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabelHelpIcon3))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout jPanelBottomRightContentLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRightContent);
@@ -208,6 +254,12 @@ public class DisconnectedPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelConnectionStatusText;
     private javax.swing.JLabel jLabelCouldNotDetect;
     private javax.swing.JLabel jLabelCouldNotFindIcom;
+    private javax.swing.JLabel jLabelHelpIcon1;
+    private javax.swing.JLabel jLabelHelpIcon2;
+    private javax.swing.JLabel jLabelHelpIcon3;
+    private javax.swing.JLabel jLabelHelpItem1;
+    private javax.swing.JLabel jLabelHelpItem2;
+    private javax.swing.JLabel jLabelHelpItem3;
     private javax.swing.JLabel jLabelPossibleConnectionErrors;
     private javax.swing.JPanel jPanelBottomRightContent;
     private javax.swing.JPanel jPanelBottomRightHeading;

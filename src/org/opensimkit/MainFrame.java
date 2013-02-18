@@ -165,10 +165,10 @@ public final class MainFrame extends javax.swing.JFrame {
         SIMKitLogo = new javax.swing.JLabel();
         jPanelBottomLeft = new javax.swing.JPanel();
         jLabelAboutOSK = new javax.swing.JLabel();
-        jButtonFaceBook = new javax.swing.JButton();
-        jButtonGitHub = new javax.swing.JButton();
-        jButtonTwitter = new javax.swing.JButton();
-        jButtonRSS = new javax.swing.JButton();
+        jSeparatorSocialMediaTop = new javax.swing.JSeparator();
+        jSeparatorSocialMediaBottom = new javax.swing.JSeparator();
+        jLabelSocialMediaIcons = new javax.swing.JLabel();
+        jLabelConnectWithUs = new javax.swing.JLabel();
         jPanelBottomRight = new javax.swing.JPanel();
         jLabelAbayimaLogo = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
@@ -182,6 +182,7 @@ public final class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         SIMKitLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/SIMKitLogo.png"))); // NOI18N
 
@@ -190,25 +191,20 @@ public final class MainFrame extends javax.swing.JFrame {
         jLabelAboutOSK.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabelAboutOSK.setText("<html><div style=\"width:100%;\">SIMKIT is a free and open source software designed to turn the world's feature phones into low cost e-readers</div></html>");
 
-        jButtonFaceBook.setBackground(new java.awt.Color(26, 26, 26));
-        jButtonFaceBook.setForeground(new java.awt.Color(26, 26, 26));
-        jButtonFaceBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/Facebook.png"))); // NOI18N
-        jButtonFaceBook.setBorder(null);
+        jLabelSocialMediaIcons.setText("<html>"
+            + "<img src=\""
+            + MainFrame.class.getResource("/org/opensimkit/resources/SIMKitConnect.png")
+            + "\">"
+            + "<img src=\""
+            + MainFrame.class.getResource("/org/opensimkit/resources/GitHubConnect.png")
+            + "\">"
+            + "<img src=\""
+            + MainFrame.class.getResource("/org/opensimkit/resources/TwitterConnect.png")
+            + "\">"
+            + "</html>");
 
-        jButtonGitHub.setBackground(new java.awt.Color(26, 26, 26));
-        jButtonGitHub.setForeground(new java.awt.Color(26, 26, 26));
-        jButtonGitHub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/GitHub.png"))); // NOI18N
-        jButtonGitHub.setBorder(null);
-
-        jButtonTwitter.setBackground(new java.awt.Color(26, 26, 26));
-        jButtonTwitter.setForeground(new java.awt.Color(26, 26, 26));
-        jButtonTwitter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/Twitter.png"))); // NOI18N
-        jButtonTwitter.setBorder(null);
-
-        jButtonRSS.setBackground(new java.awt.Color(26, 26, 26));
-        jButtonRSS.setForeground(new java.awt.Color(26, 26, 26));
-        jButtonRSS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/RSS.png"))); // NOI18N
-        jButtonRSS.setBorder(null);
+        jLabelConnectWithUs.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
+        jLabelConnectWithUs.setText("Connect with the OpenSIMKit Project");
 
         org.jdesktop.layout.GroupLayout jPanelBottomLeftLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomLeft);
         jPanelBottomLeft.setLayout(jPanelBottomLeftLayout);
@@ -221,27 +217,34 @@ public final class MainFrame extends javax.swing.JFrame {
                         .add(jLabelAboutOSK, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(jPanelBottomLeftLayout.createSequentialGroup()
-                        .add(jButtonGitHub)
-                        .add(18, 18, 18)
-                        .add(jButtonFaceBook)
-                        .add(18, 18, 18)
-                        .add(jButtonTwitter)
-                        .add(18, 18, 18)
-                        .add(jButtonRSS)
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .add(jPanelBottomLeftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jSeparatorSocialMediaBottom)
+                            .add(jSeparatorSocialMediaTop))
+                        .addContainerGap())))
+            .add(jPanelBottomLeftLayout.createSequentialGroup()
+                .add(jPanelBottomLeftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanelBottomLeftLayout.createSequentialGroup()
+                        .add(28, 28, 28)
+                        .add(jLabelSocialMediaIcons))
+                    .add(jPanelBottomLeftLayout.createSequentialGroup()
+                        .add(20, 20, 20)
+                        .add(jLabelConnectWithUs)))
+                .add(0, 0, Short.MAX_VALUE))
         );
         jPanelBottomLeftLayout.setVerticalGroup(
             jPanelBottomLeftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelBottomLeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabelAboutOSK, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(49, 49, 49)
+                .add(jSeparatorSocialMediaTop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(8, 8, 8)
+                .add(jLabelConnectWithUs)
                 .add(18, 18, 18)
-                .add(jPanelBottomLeftLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jButtonFaceBook)
-                    .add(jButtonGitHub)
-                    .add(jButtonTwitter)
-                    .add(jButtonRSS))
-                .addContainerGap(388, Short.MAX_VALUE))
+                .add(jLabelSocialMediaIcons)
+                .add(35, 35, 35)
+                .add(jSeparatorSocialMediaBottom, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
         );
 
         jPanelBottomRight.setBackground(new java.awt.Color(255, 255, 255));
@@ -316,17 +319,17 @@ public final class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SIMKitLogo;
-    private javax.swing.JButton jButtonFaceBook;
-    private javax.swing.JButton jButtonGitHub;
-    private javax.swing.JButton jButtonRSS;
-    private javax.swing.JButton jButtonTwitter;
     private javax.swing.JButton jButtonTwitter1;
     private javax.swing.JLabel jLabelAbayimaLogo;
     private javax.swing.JLabel jLabelAboutOSK;
+    private javax.swing.JLabel jLabelConnectWithUs;
+    private javax.swing.JLabel jLabelSocialMediaIcons;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemSettings;
     private javax.swing.JPanel jPanelBottomLeft;
     private javax.swing.JPanel jPanelBottomRight;
+    private javax.swing.JSeparator jSeparatorSocialMediaBottom;
+    private javax.swing.JSeparator jSeparatorSocialMediaTop;
     // End of variables declaration//GEN-END:variables
 }

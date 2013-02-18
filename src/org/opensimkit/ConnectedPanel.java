@@ -167,7 +167,7 @@ public class ConnectedPanel extends javax.swing.JPanel {
         });
 
         jLabelAutoSave1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabelAutoSave1.setText("<html> <div style=\"width:100%\"> <p>Edit the text in any of the boxes in the list on the left</p> <br/> <p>When you have finished editing click on the save button below to store those messages on card.</p> </div> </html>");
+        jLabelAutoSave1.setText("<html> <div style=\"width:100%\"><p>If you have finished working with this card, you can eject it and work with another.</p> <br/> <p>Click the eject button below and follow the instructions.</p> </div> </html>");
 
         jButtonEject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/opensimkit/resources/EjectButton.png"))); // NOI18N
         jButtonEject.setBorder(null);
@@ -205,14 +205,14 @@ public class ConnectedPanel extends javax.swing.JPanel {
         jPanelLiveEditHelpLayout.setVerticalGroup(
             jPanelLiveEditHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelLiveEditHelpLayout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .add(jLabelAutoSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButtonSave)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabelAutoSave1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jLabelAutoSave1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButtonEject))
         );
