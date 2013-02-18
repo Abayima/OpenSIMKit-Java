@@ -4,6 +4,7 @@
  */
 package org.opensimkit;
 
+import org.opensimkit.utilities.AnonymousDataCollection;
 import org.opensimkit.utilities.SerialPorts;
 
 /**
@@ -18,11 +19,14 @@ public class OpenSIMKit {
     
     public static MainFrame mainFrame;
     public static SerialPorts serialPorts;
+    public static AnonymousDataCollection anonymousDataCollection;
     
     public static void main(String[] args) {
         // TODO code application logic here
         
         serialPorts = null;
+        
+        anonymousDataCollection = new AnonymousDataCollection();
         
         mainFrame = new MainFrame();
         mainFrame.setTitle("OpenSIMKit");

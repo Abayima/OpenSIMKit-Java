@@ -49,6 +49,7 @@ public class DisconnectedPanel extends javax.swing.JPanel {
         jPanelBottomRightHeading.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabelConnectionStatusText.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabelConnectionStatusText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelConnectionStatusText.setText("There is no SIM card connected that SIMKit can work with");
 
         jLabelConnectInfo.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N

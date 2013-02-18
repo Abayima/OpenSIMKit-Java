@@ -89,13 +89,16 @@ public class ConnectedPanel extends javax.swing.JPanel {
         jPanelConnectedTop.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabelLiveEditing.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabelLiveEditing.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLiveEditing.setText("You are currently editing a SIM card");
 
         org.jdesktop.layout.GroupLayout jPanelConnectedTopLayout = new org.jdesktop.layout.GroupLayout(jPanelConnectedTop);
         jPanelConnectedTop.setLayout(jPanelConnectedTopLayout);
         jPanelConnectedTopLayout.setHorizontalGroup(
             jPanelConnectedTopLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabelLiveEditing)
+            .add(jPanelConnectedTopLayout.createSequentialGroup()
+                .add(jLabelLiveEditing, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelConnectedTopLayout.setVerticalGroup(
             jPanelConnectedTopLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -240,9 +243,11 @@ public class ConnectedPanel extends javax.swing.JPanel {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanelConnectedTop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanelConnectedBottom, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(jPanelConnectedBottom, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(jPanelConnectedTop, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

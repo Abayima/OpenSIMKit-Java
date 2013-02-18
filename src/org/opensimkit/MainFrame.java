@@ -12,9 +12,11 @@ import org.opensimkit.utilities.Messages;
  */
 public final class MainFrame extends javax.swing.JFrame {
     
+    private PermissionsPanel permissionsPanel = new PermissionsPanel();
     private ConnectedPanel connectedPanel = new ConnectedPanel();
     private DisconnectedPanel disconnectedPanel = new DisconnectedPanel();
     
+    private boolean dataCollectionInterfaceConstructed = false;
     private boolean connectedInterfaceConstructed = false;
     private boolean disconnectedInterfaceConstructed = false;
     
@@ -23,8 +25,47 @@ public final class MainFrame extends javax.swing.JFrame {
      */
     
     public MainFrame() {
-        initComponents();   
-        setDisconnectedInterface();
+        initComponents();
+        
+        if(OpenSIMKit.anonymousDataCollection.isSettingsFileExists()) {
+            setDisconnectedInterface();
+        }
+        else {
+            setAnonymousDataCollectionInterface();
+        }
+    }
+    
+    /**
+     * Anonymous data collection panel
+     */
+    
+    public void setAnonymousDataCollectionInterface()
+    {
+        if(!dataCollectionInterfaceConstructed) {
+            org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
+            jPanelBottomRight.setLayout(jPanelBottomRightLayout);
+
+            jPanelBottomRightLayout.setHorizontalGroup(
+                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jPanelBottomRightLayout.createSequentialGroup()
+                    .add(permissionsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(0, 0, Short.MAX_VALUE))
+            );
+            jPanelBottomRightLayout.setVerticalGroup(
+                jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jPanelBottomRightLayout.createSequentialGroup()
+                    .add(jPanelBottomRightLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(permissionsPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(0, 0, Short.MAX_VALUE))
+            );
+            
+            dataCollectionInterfaceConstructed = true;
+        }
+        
+        permissionsPanel.setVisible(true);
+        disconnectedPanel.setVisible(false);
+        connectedPanel.setVisible(false);
     }
     
     /**
@@ -59,6 +100,7 @@ public final class MainFrame extends javax.swing.JFrame {
         
         // Toggle interface
         
+        permissionsPanel.setVisible(false);
         disconnectedPanel.setVisible(false);
         connectedPanel.setVisible(true);
         
@@ -105,6 +147,7 @@ public final class MainFrame extends javax.swing.JFrame {
         
         // Toggle interface
         
+        permissionsPanel.setVisible(false);
         connectedPanel.setVisible(false);
         disconnectedPanel.setVisible(true);
     }
