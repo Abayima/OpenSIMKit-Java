@@ -52,6 +52,14 @@ public class AnonymousDataCollection {
             binaryPath = URLDecoder.decode(path, "UTF-8");
             
             pathToFile = StringUtil.trimRight(binaryPath, '/');
+            
+            int jarNameIndex = pathToFile.indexOf("/OpenSIMKit.jar");
+            
+            if(jarNameIndex > -1)
+            {
+                pathToFile = StringUtil.trimRight((pathToFile.substring(0, jarNameIndex)), '/');
+            }
+            
             pathToFile = pathToFile.concat("/" + xmlFileName);
             
             settingsFileExists = checkIfFileExists();
