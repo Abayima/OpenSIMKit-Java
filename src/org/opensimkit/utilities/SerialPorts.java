@@ -325,6 +325,21 @@ public class SerialPorts {
     
     private boolean winAutoConnect()
     {
+        final String pattern = "COM";
+        
+        int currentPortIndex = 0;
+        
+        for(int portLoop = 0; portLoop < serialPortList.size(); portLoop ++)
+        {
+            // Valid candidate to connect to ?
+            if(serialPortList.get(portLoop).contains(pattern)) 
+            {
+                if(connectPort(portLoop)) {
+                    return true;
+                }
+            }
+        }
+        
         return false;
     }
     
