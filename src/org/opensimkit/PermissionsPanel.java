@@ -88,7 +88,7 @@ public class PermissionsPanel extends javax.swing.JPanel {
             .add(jPanelPermissionsTopLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabelLiveEditing)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelPermissionsBottom.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,21 +133,18 @@ public class PermissionsPanel extends javax.swing.JPanel {
         jPanelPermissionsBottomLayout.setHorizontalGroup(
             jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanelPermissionsBottomLayout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(jLabelRecordInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .add(jPanelPermissionsBottomLayout.createSequentialGroup()
-                            .add(jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(jLabelCollectAnonymous, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                                .add(jLabelCollectUsage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(jToggleButtonUsage)
-                                .add(jToggleButtonTurnedOn))
-                            .add(5, 5, 5)))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanelPermissionsBottomLayout.createSequentialGroup()
-                        .add(jButtonContinue)
+                .addContainerGap(45, Short.MAX_VALUE)
+                .add(jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(jLabelRecordInfo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                    .add(jPanelPermissionsBottomLayout.createSequentialGroup()
+                        .add(jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jLabelCollectAnonymous, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                            .add(jLabelCollectUsage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanelPermissionsBottomLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jToggleButtonUsage)
+                            .add(jToggleButtonTurnedOn)
+                            .add(jButtonContinue))
                         .addContainerGap())))
         );
         jPanelPermissionsBottomLayout.setVerticalGroup(
