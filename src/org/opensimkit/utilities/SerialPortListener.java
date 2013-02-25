@@ -4,9 +4,9 @@
  */
 package org.opensimkit.utilities;
 
-import gnu.io.SerialPortEvent;
-import gnu.io.SerialPortEventListener;
-import gnu.io.SerialPort;
+import purejavacomm.SerialPortEvent;
+import purejavacomm.SerialPortEventListener;
+import purejavacomm.SerialPort;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

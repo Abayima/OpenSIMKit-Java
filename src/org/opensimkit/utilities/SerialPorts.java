@@ -9,10 +9,10 @@ package org.opensimkit.utilities;
  * @author ahmedmaawy
  */
 
-import gnu.io.CommPortIdentifier;
-import gnu.io.PortInUseException;
-import gnu.io.SerialPort;
-import gnu.io.UnsupportedCommOperationException;
+import purejavacomm.CommPortIdentifier;
+import purejavacomm.PortInUseException;
+import purejavacomm.SerialPort;
+import purejavacomm.UnsupportedCommOperationException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +25,7 @@ import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.opensimkit.OpenSIMKit;
+import purejavacomm.SerialPortEventListener;
 
 public class SerialPorts {
     private ArrayList<CommPortIdentifier> serialPorts;
@@ -239,7 +240,7 @@ public class SerialPorts {
                             SerialPort.STOPBITS_1, 
                             SerialPort.PARITY_NONE);
                     
-                    serialPort.addEventListener(new SerialPortListener());
+                    serialPort.addEventListener((SerialPortEventListener)new SerialPortListener());
                     serialPort.notifyOnDataAvailable(true);
                     serialPort.notifyOnOutputEmpty(true);
                     
