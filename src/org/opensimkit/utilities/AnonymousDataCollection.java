@@ -5,8 +5,6 @@
 package org.opensimkit.utilities;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,6 +15,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.opensimkit.OpenSIMKit;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -46,26 +45,10 @@ public class AnonymousDataCollection {
     {
         // Get the current running path
         
-        String path = AnonymousDataCollection.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        
-        try {
-            binaryPath = URLDecoder.decode(path, "UTF-8");
-            
-            pathToFile = StringUtil.trimRight(binaryPath, '/');
-            
-            int jarNameIndex = pathToFile.indexOf("/OpenSIMKit.jar");
-            
-            if(jarNameIndex > -1)
-            {
-                pathToFile = StringUtil.trimRight((pathToFile.substring(0, jarNameIndex)), '/');
-            }
-            
-            pathToFile = pathToFile.concat("/" + xmlFileName);
-            
-            settingsFileExists = checkIfFileExists();
-            
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(AnonymousDataCollection.class.getName()).log(Level.SEVERE, null, ex);
+        if(OpenSIMKit.bootstrap.isBootstrapSuccessful())
+        {
+           pathToFile = OpenSIMKit.bootstrap.getRootFolder().concat(xmlFileName);
+           settingsFileExists = checkIfFileExists();
         }
     }
     
