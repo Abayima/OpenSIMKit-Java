@@ -4,6 +4,7 @@
  */
 package org.opensimkit.utilities;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.logging.Level;
@@ -17,11 +18,13 @@ public class Bootstrap {
     private String rootFolder;
     private String pluginsFolder;
     private String driversFolder;
+    private String extensionsFolder;
     
     private boolean bootstrapSuccessful;
     
     public final String pluginsFolderName = "plugins";
     public final String driversFolderName = "drivers";
+    public final String extensionsFolderName = "extensions";
 
     // Getters
     
@@ -37,6 +40,10 @@ public class Bootstrap {
         return driversFolder;
     }
 
+    public String getExtensionsFolder() {
+        return extensionsFolder;
+    }
+    
     public boolean isBootstrapSuccessful() {
         return bootstrapSuccessful;
     }
@@ -62,6 +69,7 @@ public class Bootstrap {
             rootFolder = pathToFile.concat("/");
             pluginsFolder = rootFolder.concat(pluginsFolderName.concat("/"));
             driversFolder = pluginsFolder.concat(driversFolderName.concat("/"));
+            extensionsFolder = pluginsFolder.concat(extensionsFolderName.concat("/"));
             
             return true;
             
@@ -72,10 +80,54 @@ public class Bootstrap {
         }
     }
     
+    // Create a single folder
+    
+    private boolean createFolder(File folderName)
+    {
+        if(!folderName.exists())
+        {
+            return folderName.mkdirs();
+        }
+        else
+        {
+            if(!folderName.isDirectory())
+                return folderName.mkdirs();
+            
+            return true;
+        }
+    }
+    
+    // Creates needed folders
+    
+    private boolean checkAndCreateFolders()
+    {
+        if(isBootstrapSuccessful())
+        {
+            File driversFile = new File(driversFolder);
+            File extensionsFile = new File(extensionsFolder);
+            
+            boolean driverStatus = createFolder(driversFile);
+            boolean extensionsStatus = createFolder(extensionsFile);
+            
+            return (driverStatus && extensionsStatus);
+        }
+        
+        return false;
+    }
+    
     private boolean doBootstrap()
     {
         bootstrapSuccessful = setFolders();
-        return bootstrapSuccessful;
+        
+        // Create required plugin folders
+        
+        if(bootstrapSuccessful)
+        {
+            boolean folderStatus = checkAndCreateFolders();
+            return folderStatus;
+        }
+        
+        return false;
     }
     
     public Bootstrap()
