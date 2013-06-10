@@ -13,6 +13,7 @@ public class DriverDetails {
     private String model;
     private String revision;
     private String driverClass;
+    private boolean genericConnection;
     private String delimiter;
 
     public String getManufacturer() {
@@ -47,6 +48,14 @@ public class DriverDetails {
         this.driverClass = driverClass;
     }
 
+    public boolean isGenericConnection() {
+        return genericConnection;
+    }
+
+    public void setGenericConnection(boolean genericConnection) {
+        this.genericConnection = genericConnection;
+    }
+    
     public String getDelimiter() {
         return delimiter;
     }

@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Serial port utility and generic driver (in case we have no drivers we will use this instead)
  */
 package org.opensimkit.utilities;
 

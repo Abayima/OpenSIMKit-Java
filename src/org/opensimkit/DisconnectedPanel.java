@@ -4,7 +4,7 @@
  */
 package org.opensimkit;
 
-import javax.swing.JPanel;
+import org.opensimkit.utilities.DeviceConnection;
 import org.opensimkit.utilities.SerialPorts;
 
 /**
@@ -180,17 +180,17 @@ public class DisconnectedPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
-                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabelHelpItem1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabelHelpIcon1))
+                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabelHelpIcon1)
+                    .add(jLabelHelpItem1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabelHelpItem2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabelHelpIcon2))
+                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabelHelpIcon2)
+                    .add(jLabelHelpItem2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabelHelpItem3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabelHelpIcon3))
+                .add(jPanelContentHelpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabelHelpIcon3)
+                    .add(jLabelHelpItem3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
 
@@ -237,13 +237,13 @@ public class DisconnectedPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAutoConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAutoConnectActionPerformed
-        // TODO add your handling code here:
-        SerialPorts serialPorts = new SerialPorts();
-        if(serialPorts.autoConnect())
-        {
-            OpenSIMKit.serialPorts = serialPorts;
-            OpenSIMKit.mainFrame.setConnectedInterface();
-        }
+        
+        // Connect to the device
+        
+        DeviceConnection deviceConnection = new DeviceConnection();
+        
+        if(!OpenSIMKit.deviceConnection.connectViaDrivers())
+            OpenSIMKit.deviceConnection.connectViaGeneric();
     }//GEN-LAST:event_jButtonAutoConnectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
