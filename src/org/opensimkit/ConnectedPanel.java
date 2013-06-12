@@ -4,10 +4,10 @@
  */
 package org.opensimkit;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import org.opensimkit.utilities.DeviceConnection;
 import org.opensimkit.utilities.Messages;
 
 /**
@@ -260,27 +260,73 @@ public class ConnectedPanel extends javax.swing.JPanel {
         
         // Clear all messages
         
-        if(OpenSIMKit.serialPorts.saveMessages("123", items, true))
+        if(OpenSIMKit.deviceConnection.getConnectionMode() == DeviceConnection.deviceConnectionMode.driver)
         {
-            JOptionPane.showMessageDialog(this, "All messages saved");
+            // Connected via external driver
+            
+            boolean messageSaveStatus = true;
+            
+            int numMessagesToSave = items.size();
+            
+            OpenSIMKit.deviceConnection.getCurrentDriver().clearAllMessages();
+            
+            for(int messageToSave = 0; messageToSave < numMessagesToSave; messageToSave ++)
+            {
+                if(!OpenSIMKit.deviceConnection.getCurrentDriver().saveMessage("123", items.get(messageToSave)))
+                        messageSaveStatus = false;
+            }
+            
+            if(messageSaveStatus)
+            {
+                JOptionPane.showMessageDialog(this, "All messages saved");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Not all messages were succesfully saved");
+            }
+            
+            String simMessages = OpenSIMKit.deviceConnection.getCurrentDriver().getAllMessages();
+            Messages messages = new Messages(simMessages, OpenSIMKit.deviceConnection.getCurrentDriver().getDelimiter());
+
+            messagesPanel.setItems(messages.getMessages());
         }
-        else
+        else if(OpenSIMKit.deviceConnection.getConnectionMode() == DeviceConnection.deviceConnectionMode.serial_port)
         {
-            JOptionPane.showMessageDialog(this, "Not all messages were succesfully saved");
+            // Connected via inbuilt general purpose driver
+            
+            if(OpenSIMKit.serialPorts.saveMessages("123", items, true))
+            {
+                JOptionPane.showMessageDialog(this, "All messages saved");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Not all messages were succesfully saved");
+            }
+            
+            String simMessages = OpenSIMKit.serialPorts.getAllMessages();
+            Messages messages = new Messages(simMessages);
+
+            messagesPanel.setItems(messages.getMessages());
         }
-        
-        String simMessages = OpenSIMKit.serialPorts.getAllMessages();
-        Messages messages = new Messages(simMessages);
-        
-        messagesPanel.setItems(messages.getMessages());
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonEjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjectActionPerformed
         // TODO add your handling code here:
-        OpenSIMKit.serialPorts.disconnectPort();
-        OpenSIMKit.serialPorts = null;
         
-        OpenSIMKit.mainFrame.setDisconnectedInterface();
+        if(OpenSIMKit.deviceConnection.getConnectionMode() == DeviceConnection.deviceConnectionMode.driver)
+        {
+            // Connected using external driver
+            OpenSIMKit.deviceConnection.disconnectDevice();
+            OpenSIMKit.mainFrame.setDisconnectedInterface();
+        }
+        else
+        {
+            // In built general purpose driver
+            OpenSIMKit.serialPorts.disconnectPort();
+            OpenSIMKit.serialPorts = null;
+
+            OpenSIMKit.mainFrame.setDisconnectedInterface();
+        }
     }//GEN-LAST:event_jButtonEjectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,7 +25,6 @@ import org.w3c.dom.NodeList;
  * @author ahmedmaawy
  */
 public class AnonymousDataCollection {
-    private String binaryPath = null;
     private String pathToFile = "";
     
     private final String COLLECT_ABOUT_USE = "collect_about_use";

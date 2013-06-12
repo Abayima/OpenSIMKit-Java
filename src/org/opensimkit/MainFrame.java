@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.opensimkit.utilities.DeviceConnection;
 import org.opensimkit.utilities.Messages;
 
 /**
@@ -86,8 +87,7 @@ public final class MainFrame extends javax.swing.JFrame {
     public void setConnectedInterface()
     {
         // Contruct interface
-        
-        
+
         jPanelBottomRight.removeAll();
 
         org.jdesktop.layout.GroupLayout jPanelBottomRightLayout = new org.jdesktop.layout.GroupLayout(jPanelBottomRight);
@@ -118,11 +118,22 @@ public final class MainFrame extends javax.swing.JFrame {
         
         // Read all messages from SIM Card
         
-        if(OpenSIMKit.serialPorts.isConnected())
+        if(OpenSIMKit.deviceConnection.isDeviceConnected())
         {
-            String allMessages = OpenSIMKit.serialPorts.getAllMessages();
-            Messages messages = new Messages(allMessages);
-            connectedPanel.getMessagesPanel().setItems(messages.getMessages());
+            if(OpenSIMKit.deviceConnection.getConnectionMode() == DeviceConnection.deviceConnectionMode.driver)
+            {
+                // Developed driver
+                String allMessages = OpenSIMKit.deviceConnection.getCurrentDriver().getAllMessages();
+                Messages messages = new Messages(allMessages, OpenSIMKit.deviceConnection.getCurrentDriver().getDelimiter());
+                connectedPanel.getMessagesPanel().setItems(messages.getMessages());
+            }
+            else if (OpenSIMKit.deviceConnection.getConnectionMode() == DeviceConnection.deviceConnectionMode.serial_port)
+            {
+                // Inbuilt OSK Driver
+                String allMessages = OpenSIMKit.serialPorts.getAllMessages();
+                Messages messages = new Messages(allMessages);
+                connectedPanel.getMessagesPanel().setItems(messages.getMessages());
+            }
         }
     }
     

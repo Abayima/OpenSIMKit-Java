@@ -51,11 +51,11 @@ public class OpenSIMKit {
             // Load anonymous data collection mechanism
             anonymousDataCollection = new AnonymousDataCollection();
             
-            // Load device connection object
-            deviceConnection = new DeviceConnection();
-            
             // Load drivers
             drivers = new Drivers();
+            
+            // Load device connection object
+            deviceConnection = new DeviceConnection();
             
             // Load extensions
             extensions = new Extensions();

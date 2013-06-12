@@ -124,6 +124,7 @@ public class DeviceConnection {
     private final String deviceSettingsFileName = "DeviceSettings.xml";
     private String pathToDeviceSettingsFile = "";
     private boolean deviceSettingsExist;
+    private boolean deviceConnected;
     
     private final String DEVICE_MANUFACTURER = "Manufacturer";
     private final String DEVICE_MODEL = "Model";
@@ -133,6 +134,8 @@ public class DeviceConnection {
     
     public DeviceConnection()
     {
+        deviceConnected = false;
+        
         pathToDeviceSettingsFile = 
                 OpenSIMKit.bootstrap.getRootFolder().concat(deviceSettingsFileName);
         deviceXMLProfile = new DeviceXMLProfile();
@@ -173,7 +176,6 @@ public class DeviceConnection {
             deviceXMLProfile.setDevicePortName(devicePortNameValue);
             deviceXMLProfile.setDeviceClassName(deviceClassNameValue);
             deviceXMLProfile.setPopulated(true);
-            
         } catch (Exception ex) {
             Logger.getLogger(AnonymousDataCollection.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -190,6 +192,15 @@ public class DeviceConnection {
     {
         try 
         {
+            if(manufacturer == null)
+                manufacturer = "";
+            if(model == null)
+                model = "";
+            if(className == null)
+                className = "";
+            if(portName == null)
+                portName = "";
+            
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
@@ -283,6 +294,8 @@ public class DeviceConnection {
     
     public boolean connectViaDrivers()
     {
+        deviceConnected = false;
+        
         ArrayList <DriverDetails> availableDrivers = OpenSIMKit.drivers.getDriverDetails();
         int numDrivers = availableDrivers.size();
         
@@ -317,6 +330,9 @@ public class DeviceConnection {
             if(connectionStatus)
             {
                 connectionMode = deviceConnectionMode.driver;
+                deviceConnected = true;
+                OpenSIMKit.mainFrame.setConnectedInterface();
+                
                 return true;
             }    
         }
@@ -341,6 +357,9 @@ public class DeviceConnection {
                                 currentLoopDriver.isGenericConnection(), 
                                 currentLoopDriver.getClass().getName(), 
                                 currentLoopDriver.getPortName());
+                        
+                        deviceConnected = true;
+                        OpenSIMKit.mainFrame.setConnectedInterface();
                         
                         return true;
                     }
@@ -370,6 +389,9 @@ public class DeviceConnection {
                                     currentLoopDriver.isGenericConnection(), 
                                     currentLoopDriver.getClass().getName(), 
                                     currentLoopDriver.getPortName());
+                            
+                            deviceConnected = true;
+                            OpenSIMKit.mainFrame.setConnectedInterface();
 
                             return true;
                         }
@@ -385,6 +407,8 @@ public class DeviceConnection {
     
     public boolean connectViaGeneric()
     {
+        deviceConnected = false;
+        
         SerialPorts serialPorts = new SerialPorts();
         
         if(serialPorts.autoConnect())
@@ -393,10 +417,40 @@ public class DeviceConnection {
             OpenSIMKit.mainFrame.setConnectedInterface();
             
             connectionMode = deviceConnectionMode.serial_port;
+            deviceConnected = true;
             
             return true;
         }
         
         return false;
+    }
+    
+    public boolean disconnectDevice()
+    {
+        if(!deviceConnected)
+            return false;
+        
+        if(connectionMode == deviceConnectionMode.driver)
+        {
+            return currentDriver.disconnectDevice();
+        }
+        else if(connectionMode == deviceConnectionMode.serial_port)
+        {
+            return OpenSIMKit.serialPorts.disconnectPort();
+        }
+        
+        return false;
+    }
+
+    public boolean isDeviceConnected() {
+        return deviceConnected;
+    }
+
+    public boolean isDeviceSettingsExist() {
+        return deviceSettingsExist;
+    }
+    
+    public DriverInterface getCurrentDriver() {
+        return currentDriver;
     }
 }

@@ -5,7 +5,6 @@
 package org.opensimkit;
 
 import org.opensimkit.utilities.DeviceConnection;
-import org.opensimkit.utilities.SerialPorts;
 
 /**
  *

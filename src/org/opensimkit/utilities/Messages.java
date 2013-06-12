@@ -34,6 +34,23 @@ public class Messages {
             }
         }
     }
+    /**
+     * Constructor: Ideal for device drivers
+     * 
+     * @param textToProcess
+     * @param delimiter 
+     */
+    
+    public Messages(String textToProcess, String delimiter)
+    {
+        String [] splitString = textToProcess.split(delimiter);
+        int numElements = splitString.length;
+        
+        for(int elementLoop = 0; elementLoop < numElements; elementLoop ++)
+        {
+            messages.add(splitString[elementLoop].trim());
+        }
+    }
     
     /**
      * Get messages
