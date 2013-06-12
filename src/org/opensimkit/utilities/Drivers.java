@@ -41,6 +41,7 @@ public class Drivers {
             newDriver.setDriverClass(availablePlugins.get(driverLoop).getClass().toString());
             newDriver.setDelimiter(availablePlugins.get(driverLoop).getDelimiter());
             newDriver.setGenericConnection(availablePlugins.get(driverLoop).isGenericConnection());
+            newDriver.setDriverInterface(availablePlugins.get(driverLoop));
             
             driverDetails.add(newDriver);
         }

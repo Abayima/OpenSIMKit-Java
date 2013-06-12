@@ -4,6 +4,8 @@
  */
 package org.opensimkit.utilities;
 
+import org.opensimkit.drivers.DriverInterface;
+
 /**
  *
  * @author ahmedmaawy
@@ -15,6 +17,7 @@ public class DriverDetails {
     private String driverClass;
     private boolean genericConnection;
     private String delimiter;
+    private DriverInterface driverInterface;
 
     public String getManufacturer() {
         return manufacturer;
@@ -62,5 +65,13 @@ public class DriverDetails {
 
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
+    }
+
+    public DriverInterface getDriverInterface() {
+        return driverInterface;
+    }
+
+    public void setDriverInterface(DriverInterface driverInterface) {
+        this.driverInterface = driverInterface;
     }
 }
