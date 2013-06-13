@@ -1,5 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
+ * Application bootstrap
  * and open the template in the editor.
  */
 package org.opensimkit.utilities;
@@ -28,27 +28,63 @@ public class Bootstrap {
 
     // Getters
     
+    /**
+     * Get the root folder path
+     * 
+     * @return Root folder path
+     */
+    
     public String getRootFolder() {
         return rootFolder;
     }
+    
+    /**
+     * Get plugins folder path
+     * 
+     * @return plugins folder path
+     */
 
     public String getPluginsFolder() {
         return pluginsFolder;
     }
+    
+    /**
+     * Get drivers folder path
+     * 
+     * @return drivers folder path
+     */
 
     public String getDriversFolder() {
         return driversFolder;
     }
+    
+    /**
+     * Get extensions folder path
+     * 
+     * @return extensions folder path
+     */
 
     public String getExtensionsFolder() {
         return extensionsFolder;
     }
+    
+    /**
+     * Was the boostrap successful?
+     * 
+     * @return boolean 
+     */
     
     public boolean isBootstrapSuccessful() {
         return bootstrapSuccessful;
     }
     
     // Utility functions
+    
+    /**
+     * Set folder paths for various system folders
+     * 
+     * @return boolean success
+     */
     
     private boolean setFolders()
     {
@@ -82,6 +118,13 @@ public class Bootstrap {
     
     // Create a single folder
     
+    /**
+     * Create a folder if it dont exist
+     * 
+     * @param folderName
+     * @return boolean success 
+     */
+    
     private boolean createFolder(File folderName)
     {
         if(!folderName.exists())
@@ -99,6 +142,12 @@ public class Bootstrap {
     
     // Creates needed folders
     
+    /**
+     * Checks availability for system folders and creates them
+     * 
+     * @return boolean success
+     */
+    
     private boolean checkAndCreateFolders()
     {
         if(isBootstrapSuccessful())
@@ -115,6 +164,12 @@ public class Bootstrap {
         return false;
     }
     
+    /**
+     * Does the main boot strapping
+     * 
+     * @return 
+     */
+    
     private boolean doBootstrap()
     {
         bootstrapSuccessful = setFolders();
@@ -129,6 +184,10 @@ public class Bootstrap {
         
         return false;
     }
+    
+    /**
+     * Constructor
+     */
     
     public Bootstrap()
     {

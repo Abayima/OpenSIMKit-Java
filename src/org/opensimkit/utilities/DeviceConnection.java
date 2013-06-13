@@ -27,10 +27,18 @@ import org.w3c.dom.NodeList;
  */
 public class DeviceConnection {
     
+    /**
+     * Enum - Device connection mode (Driver, in built)
+     */
+    
     public enum deviceConnectionMode
     {
         driver, serial_port
     }
+    
+    /**
+     * Device XML Profile - stored in XML setting file
+     */
     
     private class DeviceXMLProfile
     {
@@ -120,6 +128,7 @@ public class DeviceConnection {
     private deviceConnectionMode connectionMode;
     private DeviceXMLProfile deviceXMLProfile;
     private DriverInterface currentDriver;
+    private SerialPorts serialPorts;
     
     private final String deviceSettingsFileName = "DeviceSettings.xml";
     private String pathToDeviceSettingsFile = "";
@@ -132,15 +141,28 @@ public class DeviceConnection {
     private final String DEVICE_CLASS_NAME = "Class";
     private final String DEVICE_PORT_NAME = "Port_Name";
     
+    /**
+     * Constructor
+     */
+    
     public DeviceConnection()
     {
         deviceConnected = false;
+        
+        serialPorts = new SerialPorts();
+        OpenSIMKit.serialPorts = serialPorts;
         
         pathToDeviceSettingsFile = 
                 OpenSIMKit.bootstrap.getRootFolder().concat(deviceSettingsFileName);
         deviceXMLProfile = new DeviceXMLProfile();
         deviceSettingsExist = checkIfDeviceSettingsFileExists();
     }
+    
+    /**
+     * Reads profile from XML file if present
+     * 
+     * @return boolean success 
+     */
     
     private boolean readDeviceXMLFile() 
     {
@@ -185,7 +207,16 @@ public class DeviceConnection {
         return true;
     }
     
-    // Save device XML details
+    /**
+     * Save XML details to settings file
+     * 
+     * @param manufacturer
+     * @param model
+     * @param generic
+     * @param className
+     * @param portName
+     * @return boolean success
+     */
     
     public boolean saveDeviceXMLSettings(String manufacturer, String model, boolean generic,
         String className, String portName)
@@ -257,6 +288,12 @@ public class DeviceConnection {
         return true;
     }
     
+    /**
+     * Does the device settings file exist? If so load it
+     * 
+     * @return boolean success
+     */
+    
     private boolean checkIfDeviceSettingsFileExists()
     {
         File settingsFile = new File(pathToDeviceSettingsFile);
@@ -270,27 +307,60 @@ public class DeviceConnection {
         return false;
     }
 
-    // Getters and setters
+    /**
+     * Get connection mode
+     * 
+     * @return connection_mode
+     */
     
     public deviceConnectionMode getConnectionMode()
     {
         return connectionMode;
     }
+    
+    /**
+     * Set connection mode
+     * 
+     * @param connectionMode 
+     */
 
     public void setConnectionMode(deviceConnectionMode connectionMode)
     {
         this.connectionMode = connectionMode;
     }
     
-    // Loop through all devices getting device details to connect to appropriate driver
+    /**
+     * Search for devices for reliant drivers. Save to profile if successful
+     * 
+     * @param manufacturer
+     * @param model
+     * @param revision
+     * @return PortIdentification
+     */
     
     private PortIdentification searchForDevices(String manufacturer, String model, 
         String revision)
     {
-        return null;
+        int portIndex = OpenSIMKit.serialPorts.driverAutoConnect(manufacturer, model, revision);
+        
+        if(portIndex < 0)
+            return null;
+        
+        ArrayList<String> portNames = OpenSIMKit.serialPorts.getSerialPortList();
+        String portName = portNames.get(portIndex);
+        
+        PortIdentification portIdentification = new PortIdentification();
+        portIdentification.setPortIndex(portIndex);
+        portIdentification.setPortName(portName);
+        
+        return portIdentification;
     }
     
-    // Connect via drivers
+    /**
+     * Connect via Drivers
+     * 
+     * @return boolean success 
+     */
     
     public boolean connectViaDrivers()
     {
@@ -324,6 +394,51 @@ public class DeviceConnection {
                 if(driverStatus)
                 {
                     connectionStatus = currentDriver.connectToDevice();
+                }
+            }
+            else
+            {
+                // Not a generic device. Get the port identification
+                
+                ArrayList<String> allPortNames = OpenSIMKit.serialPorts.getSerialPortList();
+                int numPorts = allPortNames.size();
+                int portIndex = -1;
+                
+                for(int currentLoop = 0; currentLoop < numPorts; currentLoop ++)
+                {
+                    if(allPortNames.get(currentLoop).equals(deviceXMLProfile.getDevicePortName()))
+                    {
+                        // We have gotten the driver
+                        portIndex = currentLoop;
+                    }
+                }
+                
+                // Try and see if we can connect to identified device
+                
+                if(portIndex >= 0)
+                {
+                    boolean driverStatus = false;
+
+                    String className = deviceXMLProfile.getDeviceClassName();
+
+                    for(int driverLoop = 0; driverLoop < numDrivers; driverLoop ++)
+                    {
+                        String driverClassName = availableDrivers.get(driverLoop).getDriverClass();
+                        driverClassName = driverClassName.replace("class", "");
+                        driverClassName = driverClassName.trim();
+                        
+                        if(driverClassName.equals(className))
+                        {
+                            // We got the driver
+                            currentDriver = availableDrivers.get(driverLoop).getDriverInterface();
+                            driverStatus = true;
+                        }
+                    }
+
+                    if(driverStatus)
+                    {
+                        connectionStatus = currentDriver.connectToSerialPort(portIndex);
+                    }
                 }
             }
             
@@ -403,27 +518,34 @@ public class DeviceConnection {
         return false;
     }
     
-    // Connect via generic mode
+    /**
+     * Connect via in built drivers
+     * 
+     * @return boolean success
+     */
     
     public boolean connectViaGeneric()
     {
         deviceConnected = false;
         
-        SerialPorts serialPorts = new SerialPorts();
-        
-        if(serialPorts.autoConnect())
+        if(OpenSIMKit.serialPorts.autoConnect())
         {
-            OpenSIMKit.serialPorts = serialPorts;
-            OpenSIMKit.mainFrame.setConnectedInterface();
-            
             connectionMode = deviceConnectionMode.serial_port;
             deviceConnected = true;
+            
+            OpenSIMKit.mainFrame.setConnectedInterface();
             
             return true;
         }
         
         return false;
     }
+    
+    /**
+     * Disconnect connection to device
+     * 
+     * @return boolean success
+     */
     
     public boolean disconnectDevice()
     {
@@ -441,14 +563,32 @@ public class DeviceConnection {
         
         return false;
     }
+    
+    /**
+     * Gets to see if currently connected
+     * 
+     * @return boolean connected 
+     */
 
     public boolean isDeviceConnected() {
         return deviceConnected;
     }
+    
+    /**
+     * Does the device settings file exist?
+     * 
+     * @return boolean exists 
+     */
 
     public boolean isDeviceSettingsExist() {
         return deviceSettingsExist;
     }
+    
+    /**
+     * Get the current active driver
+     * 
+     * @return DriverInterface instance
+     */
     
     public DriverInterface getCurrentDriver() {
         return currentDriver;

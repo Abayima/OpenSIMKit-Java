@@ -23,7 +23,6 @@ import java.util.Enumeration;
 import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.opensimkit.OpenSIMKit;
 import purejavacomm.SerialPortEventListener;
 
 public class SerialPorts {
@@ -56,6 +55,11 @@ public class SerialPorts {
     // Parial write command
     final String CMD_REQUEST_WRITE_MESSAGE = "AT+CMGW=\"{{ message_contact }}\"\r\n";
     final String CMD_DO_WRITE_AFTER_REQUEST = "{{ message }}";
+    
+    // Device identification
+    final String CMD_DEVICE_MANUFACTURER = "AT+GMI\r\n";
+    final String CMD_DEVICE_MODEL = "AT+GMM\r\n";
+    final String CMD_DEVICE_REVISION = "AT+GMR\r\n";
     
     /**
      * Constructor
@@ -292,7 +296,7 @@ public class SerialPorts {
     
     public boolean autoConnect()
     {
-        OpenSIMKit.serialPorts = null;
+        // OpenSIMKit.serialPorts = null;
         
         String osName = System.getProperty("os.name").toLowerCase();       
         OSUtilities osUtilities = new OSUtilities(osName);
@@ -315,6 +319,79 @@ public class SerialPorts {
         }
         
         return false;
+    }
+    
+    /**
+     * Auto-connect mechanism for a driver
+     * 
+     * @param manufacturer
+     * @param model
+     * @param revision
+     * @return portIndex
+     */
+    
+    public int driverAutoConnect(String manufacturer, String model,
+        String revision)
+    {
+        int devicePortIndex = -1;
+        
+        for(int portLoop = 0; portLoop < serialPortList.size(); portLoop ++)
+        {
+            if(connectPort(portLoop))
+            {
+                runCommand(CMD_DEVICE_MANUFACTURER);
+                String currentManufacturer = waitForOutput();
+                
+                runCommand(CMD_DEVICE_MODEL);
+                String currentModel = waitForOutput();
+                
+                runCommand(CMD_DEVICE_REVISION);
+                String currentRevision = waitForOutput();
+                
+                // Revision is always an optional parameter
+                
+                if(currentManufacturer != null && currentModel != null)
+                {
+                    // Prepare the strings
+                    currentManufacturer = currentManufacturer.replace(CMD_DEVICE_MANUFACTURER, "");
+                    currentManufacturer = currentManufacturer.replace("OK", "");
+                    
+                    currentModel = currentModel.replace(CMD_DEVICE_MODEL, "");
+                    currentModel = currentModel.replace("OK", "");
+                    
+                    currentRevision = currentRevision.replace(CMD_DEVICE_REVISION, "");
+                    currentRevision = currentRevision.replace("OK", "");
+                    
+                    if(revision != null)
+                    {
+                        if(currentRevision != null)
+                        {
+                            if(currentManufacturer.trim().equals(manufacturer.trim()) &&
+                                currentModel.trim().equals(model.trim()) &&
+                                currentRevision.trim().equals(revision.trim()))
+                            {
+                                // Device found
+                                devicePortIndex = portLoop;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if(currentManufacturer.trim().equals(manufacturer.trim()) &&
+                            currentModel.trim().equals(model.trim()))
+                        {
+                            // Device found
+                            devicePortIndex = portLoop;
+                        } 
+                    }
+                }
+                
+                disconnectPort();
+            }
+        }
+        
+        return devicePortIndex;
     }
     
     /**
@@ -352,13 +429,15 @@ public class SerialPorts {
     private boolean macAutoConnect()
     {        
         final String pattern = "tty.usb";
+        final String pattern2 = "usb";
         
         int currentPortIndex = 0;
         
         for(int portLoop = 0; portLoop < serialPortList.size(); portLoop ++)
         {
             // Valid candidate to connect to ?
-            if(serialPortList.get(portLoop).contains(pattern)) 
+            if(serialPortList.get(portLoop).contains(pattern) ||
+                    serialPortList.get(portLoop).contains(pattern2)) 
             {
                 if(connectPort(portLoop)) {
                     return true;
@@ -434,6 +513,8 @@ public class SerialPorts {
                 }
             }.start();
         }
+        
+        connected = false;
         
         return true;
     }
