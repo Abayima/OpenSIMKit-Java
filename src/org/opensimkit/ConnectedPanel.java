@@ -7,7 +7,9 @@ package org.opensimkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import org.opensimkit.extensions.ExtensionInterface;
 import org.opensimkit.utilities.DeviceConnection;
+import org.opensimkit.utilities.ExtensionDetails;
 import org.opensimkit.utilities.Messages;
 
 /**
@@ -252,10 +254,26 @@ public class ConnectedPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<JTextArea> textAreaList = messagesPanel.getjTextAreaList();
         ArrayList<String> items = new ArrayList<String>();
+        Messages messages = new Messages(null);
+        
         int numItems = textAreaList.size();
+        
+        boolean extensionPreSaveStatus, extensionPostSaveStatus;
         
         for(int itemLoop = 0; itemLoop < numItems; itemLoop ++) {
             items.add(textAreaList.get(itemLoop).getText());
+        }
+        
+        // Run the preSave extension logic
+        
+        ArrayList<ExtensionDetails> extensions = OpenSIMKit.extensions.getExtensionDetails();
+        
+        int numExtensions = extensions.size();
+        
+        for(int extensionLoop = 0; extensionLoop < numExtensions; extensionLoop ++)
+        {
+            ExtensionInterface extensionInterface = extensions.get(extensionLoop).getExtensionInterface();
+            extensionPreSaveStatus = extensionInterface.preSave(items);
         }
         
         // Clear all messages
@@ -286,7 +304,7 @@ public class ConnectedPanel extends javax.swing.JPanel {
             }
             
             String simMessages = OpenSIMKit.deviceConnection.getCurrentDriver().getAllMessages();
-            Messages messages = new Messages(simMessages, OpenSIMKit.deviceConnection.getCurrentDriver().getDelimiter());
+            messages = new Messages(simMessages, OpenSIMKit.deviceConnection.getCurrentDriver().getDelimiter());
 
             messagesPanel.setItems(messages.getMessages());
         }
@@ -304,9 +322,17 @@ public class ConnectedPanel extends javax.swing.JPanel {
             }
             
             String simMessages = OpenSIMKit.serialPorts.getAllMessages();
-            Messages messages = new Messages(simMessages);
+            messages = new Messages(simMessages);
 
             messagesPanel.setItems(messages.getMessages());
+        }
+        
+        // Post save extension execution
+        
+        for(int extensionLoop = 0; extensionLoop < numExtensions; extensionLoop ++)
+        {
+            ExtensionInterface extensionInterface = extensions.get(extensionLoop).getExtensionInterface();
+            extensionPostSaveStatus = extensionInterface.postSave(messages.getMessages());
         }
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
