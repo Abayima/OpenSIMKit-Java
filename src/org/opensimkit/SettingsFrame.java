@@ -71,6 +71,7 @@ public class SettingsFrame extends javax.swing.JFrame {
         jLabelPort = new javax.swing.JLabel();
         jButtonConnect = new javax.swing.JButton();
         jPanelAdvanced = new javax.swing.JPanel();
+        jButtonExtensionSettings = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Settings");
@@ -185,15 +186,26 @@ public class SettingsFrame extends javax.swing.JFrame {
 
         jTabbedPaneSettings.addTab("Settings", jPanelAppSettings);
 
+        jButtonExtensionSettings.setText("Extension Settings");
+        jButtonExtensionSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExtensionSettingsActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanelAdvancedLayout = new org.jdesktop.layout.GroupLayout(jPanelAdvanced);
         jPanelAdvanced.setLayout(jPanelAdvancedLayout);
         jPanelAdvancedLayout.setHorizontalGroup(
             jPanelAdvancedLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 529, Short.MAX_VALUE)
+            .add(jPanelAdvancedLayout.createSequentialGroup()
+                .add(jButtonExtensionSettings)
+                .add(0, 368, Short.MAX_VALUE))
         );
         jPanelAdvancedLayout.setVerticalGroup(
             jPanelAdvancedLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 269, Short.MAX_VALUE)
+            .add(jPanelAdvancedLayout.createSequentialGroup()
+                .add(jButtonExtensionSettings)
+                .add(0, 240, Short.MAX_VALUE))
         );
 
         jTabbedPaneSettings.addTab("Advanced", jPanelAdvanced);
@@ -252,8 +264,15 @@ public class SettingsFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonConnectActionPerformed
 
+    private void jButtonExtensionSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtensionSettingsActionPerformed
+        // Display the extensions frame
+        ExtensionsFrame extensionsFrame = new ExtensionsFrame();
+        extensionsFrame.setVisible(true);
+    }//GEN-LAST:event_jButtonExtensionSettingsActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConnect;
+    private javax.swing.JButton jButtonExtensionSettings;
     private javax.swing.JComboBox jComboBoxBaudRate;
     private javax.swing.JComboBox jComboBoxDataBits;
     private javax.swing.JComboBox jComboBoxParity;

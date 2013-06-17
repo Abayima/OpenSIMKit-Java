@@ -54,9 +54,6 @@ public class OpenSIMKit {
             // Load drivers
             drivers = new Drivers();
             
-            // Load extensions
-            extensions = new Extensions();
-            
             // Load device connection object
             deviceConnection = new DeviceConnection();
             

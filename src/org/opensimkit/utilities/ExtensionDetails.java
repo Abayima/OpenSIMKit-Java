@@ -4,7 +4,9 @@
  */
 package org.opensimkit.utilities;
 
+import java.util.ArrayList;
 import org.opensimkit.extensions.ExtensionInterface;
+import org.opensimkit.extensions.ExtensionParameter;
 
 /**
  *
@@ -13,6 +15,8 @@ import org.opensimkit.extensions.ExtensionInterface;
 public class ExtensionDetails {
     private String extensionClass;
     private ExtensionInterface extensionInterface;
+    private String extensionName;
+    private ArrayList<ExtensionParameter> extensionParameters;
 
     public String getExtensionClass() {
         return extensionClass;
@@ -28,5 +32,21 @@ public class ExtensionDetails {
 
     public void setExtensionInterface(ExtensionInterface extensionInterface) {
         this.extensionInterface = extensionInterface;
+    }
+
+    public String getExtensionName() {
+        return extensionName;
+    }
+
+    public void setExtensionName(String extensionName) {
+        this.extensionName = extensionName;
+    }
+
+    public ArrayList<ExtensionParameter> getExtensionParameters() {
+        return extensionParameters;
+    }
+
+    public void setExtensionParameters(ArrayList<ExtensionParameter> extensionParameters) {
+        this.extensionParameters = extensionParameters;
     }
 }
