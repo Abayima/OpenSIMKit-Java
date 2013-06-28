@@ -541,6 +541,27 @@ public class DeviceConnection {
         return false;
     }
     
+    public boolean connectViaGeneric(int portId, long baudRate, String dataBits,
+        String stopBits, String parity)
+    {
+        if(!serialPorts.connectPort(portId)) 
+        {
+            return false;
+        }
+        else {
+            serialPorts.setParameters(baudRate, dataBits, stopBits, parity);
+            
+            OpenSIMKit.serialPorts = serialPorts;
+
+            connectionMode = deviceConnectionMode.serial_port;
+            deviceConnected = true;
+            
+            OpenSIMKit.mainFrame.setConnectedInterface();
+            
+            return true;
+        }
+    }
+    
     /**
      * Disconnect connection to device
      * 

@@ -4,9 +4,6 @@
  */
 package org.opensimkit;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;

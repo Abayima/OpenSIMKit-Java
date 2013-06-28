@@ -254,7 +254,7 @@ public class ConnectedPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<JTextArea> textAreaList = messagesPanel.getjTextAreaList();
         ArrayList<String> items = new ArrayList<String>();
-        Messages messages = new Messages(null);
+        Messages messages = new Messages("");
         
         int numItems = textAreaList.size();
         

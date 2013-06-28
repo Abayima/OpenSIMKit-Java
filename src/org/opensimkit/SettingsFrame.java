@@ -236,22 +236,20 @@ public class SettingsFrame extends javax.swing.JFrame {
         if(!serialPorts.isConnected()) {
             int selectedOption = jComboBoxPorts.getSelectedIndex();
         
-            if(!serialPorts.connectPort(selectedOption)) 
+            if(OpenSIMKit.deviceConnection.connectViaGeneric(selectedOption, 
+                Long.parseLong(jComboBoxBaudRate.getSelectedItem().toString()), 
+                jComboBoxDataBits.getSelectedItem().toString(),
+                jComboBoxStopBits.getSelectedItem().toString(),
+                jComboBoxParity.getSelectedItem().toString()))
             {
-                JOptionPane.showMessageDialog(this, "Unable to connect to the port");
-            }
-            else {
-                serialPorts.setParameters(Long.parseLong(jComboBoxBaudRate.getSelectedItem().toString()), 
-                        jComboBoxDataBits.getSelectedItem().toString(), 
-                        jComboBoxStopBits.getSelectedItem().toString(),
-                        jComboBoxParity.getSelectedItem().toString());
-                
                 JOptionPane.showMessageDialog(this, "Connected to the port");
                 jButtonConnect.setText("Disconnect");
-                OpenSIMKit.serialPorts = serialPorts;
-                OpenSIMKit.mainFrame.setConnectedInterface();
                 
                 this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Unable to connect to the port");
             }
         }
         else {
