@@ -27,6 +27,7 @@ public class Messages {
         for(int elementLoop = 0; elementLoop < numElements; elementLoop ++)
         {
             if(!splitString[elementLoop].contains("+CMGL") 
+                    && !splitString[elementLoop].contains("+CPMS") 
                     && !splitString[elementLoop].trim().equals("OK")
                     && !splitString[elementLoop].trim().equals(""))
             {

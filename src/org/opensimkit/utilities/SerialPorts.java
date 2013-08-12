@@ -578,12 +578,12 @@ public class SerialPorts {
     
     private String waitForOutput()
     {
-        int numAttempts = 5;
+        int numAttempts = 10;
         int currentAttempt = 1;
         
         try {
             while(serialPortReturnValue.trim().equals("") && currentAttempt < numAttempts) {
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 currentAttempt ++;
             }
             
